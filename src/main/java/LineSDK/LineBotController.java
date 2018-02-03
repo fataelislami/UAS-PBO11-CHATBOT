@@ -1,9 +1,11 @@
 
 package LineSDK;
 
+import Controller.CariMasjid;
 import Controller.JadwalSholat;
 import Controller.Kalender;
 import Controller.Quran;
+import Interface.interCariMasjid;
 import Interface.interJdwlSholat;
 import Interface.interKalender;
 import Interface.interQuran;
@@ -106,6 +108,15 @@ public class LineBotController
                         @Override
                         public void onSuccess(String[] value) {
                             replyToUser(payload.events[0].replyToken,"Ini Tanggalnya " + value[1]);
+                        }
+                    });
+                }
+                if(msgText.contains("cari masjid")){
+                    CariMasjid obj=new CariMasjid();
+                    obj.getDataMasjid(new interCariMasjid() {
+                        @Override
+                        public void onSuccess(String[] value) {
+                            replyToUser(payload.events[0].replyToken,value[0]);
                         }
                     });
                 }

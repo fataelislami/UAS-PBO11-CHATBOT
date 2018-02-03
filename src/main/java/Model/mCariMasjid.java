@@ -1,36 +1,19 @@
 package Model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class mCariMasjid {
-    private Double lat;
-    private Double lng;
-    private String nama;
+    private List<Result> result = null;
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    public Double getLat() {
-        return lat;
+    public List<Result> getResult() {
+        return result;
     }
 
-    public void setLat(Double lat) {
-        this.lat = lat;
-    }
-
-    public Double getLng() {
-        return lng;
-    }
-
-    public void setLng(Double lng) {
-        this.lng = lng;
-    }
-
-    public String getNama() {
-        return nama;
-    }
-
-    public void setNama(String nama) {
-        this.nama = nama;
+    public void setResult(List<Result> result) {
+        this.result = result;
     }
 
     public Map<String, Object> getAdditionalProperties() {
