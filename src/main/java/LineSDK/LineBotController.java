@@ -97,6 +97,9 @@ public class LineBotController
                 if(msgText.contains("pbo")){
                     replyToUser(payload.events[0].replyToken,"Status Connected");
                 }
+                if(msgText.contains("daniel")){
+                    replyToUser(payload.events[0].replyToken,"Oyyy");
+                }
                 if(msgText.substring(0,13).contains("jadwal sholat")){
 
 
