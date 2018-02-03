@@ -2,8 +2,10 @@
 package LineSDK;
 
 import Controller.JadwalSholat;
+import Controller.Kalender;
 import Controller.Quran;
 import Interface.interJdwlSholat;
+import Interface.interKalender;
 import Interface.interQuran;
 import LineSDK.Payload;
 import com.google.gson.Gson;
@@ -92,6 +94,16 @@ public class LineBotController
                     } else if (payload.events[0].source.type.equals("room")){
                         leaveGR(payload.events[0].source.roomId, "room");
                     }
+                }
+                if(msgText.contains("kalender")){
+                    String tanggal="03-02-2018";
+                    Kalender oKal = new Kalender();
+                    oKal.getKalender(tanggal, new interKalender() {
+                        @Override
+                        public void onSuccess(String[] value) {
+                            replyToUser(payload.events[0].replyToken, value[1]);
+                        }
+                    });
                 }
                 if(msgText.contains("kelompok")){
                     replyToUser(payload.events[0].replyToken,"BOT KELOMPOK 3");
