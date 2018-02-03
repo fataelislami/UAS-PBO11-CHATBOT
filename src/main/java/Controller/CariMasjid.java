@@ -49,7 +49,7 @@ public class CariMasjid {
         String imageUrl="https://islamify.id/imagebot/okemas.png";
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                 Arrays.asList(
-                        new CarouselColumn(imageUrl, "TEST", "Masjid Ini Deket Banget Bro", Arrays.asList(
+                        new CarouselColumn(imageUrl, value.get(0).getNama(), "Masjid Ini Deket Banget Bro", Arrays.asList(
                                 new PostbackAction("Tuju Masjid",
                                         "#")
                         )),
