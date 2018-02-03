@@ -93,7 +93,9 @@ public class LineBotController
                         leaveGR(payload.events[0].source.roomId, "room");
                     }
                 }
-
+                if(msgText.contains("kelompok")){
+                    replyToUser(payload.events[0].replyToken,"BOT KELOMPOK 3");
+                }
                 if(msgText.contains("test")){
                     replyToUser(payload.events[0].replyToken, "TERHUBUNG OKE");
                 }
