@@ -1,12 +1,18 @@
 
 package LineSDK;
 
+import Controller.JadwalSholat;
+import Interface.interJdwlSholat;
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.client.LineSignatureValidator;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
+import com.linecorp.bot.model.action.PostbackAction;
+import com.linecorp.bot.model.message.TemplateMessage;
 import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.message.template.ButtonsTemplate;
+import com.linecorp.bot.model.message.template.Template;
 import com.linecorp.bot.model.response.BotApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @RestController
 @RequestMapping(value="/linebot")
@@ -90,6 +97,37 @@ public class LineBotController
                 if(msgText.contains("pbo")){
                     replyToUser(payload.events[0].replyToken,"Status Connected");
                 }
+                if(msgText.substring(0,13).contains("jadwal sholat")){
+
+
+                    String[] kota=msgText.split("\\s");
+                    JadwalSholat obj=new JadwalSholat();
+                    obj.getJadwal(kota[2], new interJdwlSholat() {
+                        @Override
+                        public void onSuccess(String[] value) {
+
+                            ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
+                                    "https://islamify.id/imagebot/FIXJADWALL.png",
+                                    "Sekarang Menuju Waktu",
+                                    "Isya "+value[5],
+                                    Arrays.asList(
+                                            new PostbackAction("Shubuh "+value[1],"#"),
+                                            new PostbackAction("Dzuhur "+value[2],"#1"),
+                                            new PostbackAction("Ashar "+value[3],"#"),
+                                            new PostbackAction("Maghrib "+value[4],"#")
+                                    ));
+//
+//                            replyToUser(payload.events[0].replyToken,"Halo");
+                            replyTemplateToUser(
+                                    payload.events[0].replyToken,
+                                    "Jadwal Sholat Hari Ini"
+                                    ,buttonsTemplate
+                            );
+                        }
+                    });
+
+
+                }
 
             }
         }
@@ -112,6 +150,23 @@ public class LineBotController
                 .build()
                 .replyMessage(replyMessage)
                 .execute();
+            System.out.println("Reply Message: " + response.code() + " " + response.message());
+        } catch (IOException e) {
+            System.out.println("Exception is raised ");
+            e.printStackTrace();
+        }
+    }
+
+    private void replyTemplateToUser(String rToken, String alt, Template template){
+        TemplateMessage oTemplate=new TemplateMessage(alt,template);
+
+        ReplyMessage replyMessage = new ReplyMessage(rToken, oTemplate);
+        try {
+            Response<BotApiResponse> response = LineMessagingServiceBuilder
+                    .create(lChannelAccessToken)
+                    .build()
+                    .replyMessage(replyMessage)
+                    .execute();
             System.out.println("Reply Message: " + response.code() + " " + response.message());
         } catch (IOException e) {
             System.out.println("Exception is raised ");
