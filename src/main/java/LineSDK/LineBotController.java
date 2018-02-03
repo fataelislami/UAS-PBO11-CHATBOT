@@ -105,7 +105,7 @@ public class LineBotController
                     oKal.getKalender(Tanggal, new interKalender() {
                         @Override
                         public void onSuccess(String[] value) {
-                            replyToUser(payload.events[0].replyToken, value[1]);
+                            replyToUser(payload.events[0].replyToken,"Ini Tanggalnya " + value[1]);
                         }
                     });
                 }
