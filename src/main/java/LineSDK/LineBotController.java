@@ -29,8 +29,10 @@ import org.springframework.web.bind.annotation.*;
 import retrofit2.Response;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -96,9 +98,11 @@ public class LineBotController
                     }
                 }
                 if(msgText.contains("kalender")){
-                    String tanggal="03-02-2018";
+
+                    Date oTanggal = new Date();
+                    String Tanggal = new SimpleDateFormat("dd-mm-yyyy").format(oTanggal);
                     Kalender oKal = new Kalender();
-                    oKal.getKalender(tanggal, new interKalender() {
+                    oKal.getKalender(Tanggal, new interKalender() {
                         @Override
                         public void onSuccess(String[] value) {
                             replyToUser(payload.events[0].replyToken, value[1]);
