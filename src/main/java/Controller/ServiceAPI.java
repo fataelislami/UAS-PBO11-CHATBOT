@@ -17,7 +17,7 @@ public interface ServiceAPI {
     @GET("QuranAPI.php")
     Call<mQuran> getQuran(@QueryMap HashMap<String,String> params);
 
-    @GET("api/kalender/api.php?")
+    @GET("api/kalender/api.php")
     Call<mKalender> getKalender(@QueryMap HashMap<String,String> params);
 
     @GET("api/masjid/api.php")
