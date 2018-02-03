@@ -10,6 +10,7 @@ import Interface.interJdwlSholat;
 import Interface.interKalender;
 import Interface.interQuran;
 import LineSDK.Payload;
+import Model.Result;
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.client.LineSignatureValidator;
@@ -115,8 +116,8 @@ public class LineBotController
                     CariMasjid obj=new CariMasjid();
                     obj.getDataMasjid(new interCariMasjid() {
                         @Override
-                        public void onSuccess(String[] value) {
-                            replyToUser(payload.events[0].replyToken,value[0]);
+                        public void onSuccess(List<Result> value) {
+                            obj.replyToUser(payload.events[0].replyToken,lChannelAccessToken,value);
                         }
                     });
                 }
