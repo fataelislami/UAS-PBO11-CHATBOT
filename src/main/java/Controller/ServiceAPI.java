@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.mJadwalSholat;
+import Model.mKalender;
 import Model.mQuran;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,4 +15,7 @@ public interface ServiceAPI {
 
     @GET("QuranAPI.php")
     Call<mQuran> getQuran(@QueryMap HashMap<String,String> params);
+
+    @GET("api/kalender/api.php?")
+    Call<mKalender> getKalender(@QueryMap HashMap<String,String> params);
 }
