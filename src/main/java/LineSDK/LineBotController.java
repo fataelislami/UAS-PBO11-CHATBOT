@@ -99,21 +99,9 @@ public class LineBotController
                 if(msgText.contains("test")){
                     replyToUser(payload.events[0].replyToken, "TERHUBUNG OKE");
                 }
-<<<<<<< HEAD
-<<<<<<< HEAD
-                if(msgText.contains("nama")){
+
+                if(msgText.contains("nama")) {
                     replyToUser(payload.events[0].replyToken, "ilham prasetyo");
-                }
-                if(msgText.contains("NIM ilham")){
-                    replyToUser(payload.events[0].replyToken, "10116496");
-=======
-                                if(msgText.contains("Daniel")){
-                    replyToUser(payload.events[0].replyToken, "10116477 - Fransiskus Xaverius Daniel S");
->>>>>>> master
-=======
-                                if(msgText.contains("daniel")){
-                    replyToUser(payload.events[0].replyToken, "10116477 - Fransiskus Xaverius Daniel S");
->>>>>>> master
                 }
                 if(msgText.equals("coba ini")){
                     String[] word=msgText.split("\\s");
