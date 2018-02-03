@@ -2,13 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7818a694-e3f0-45a1-96f2-237c5ed0fdc9" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Controller/Quran.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Interface/interQuran.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/LineSDK/Postback.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Model/mQuran.java" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/ServiceAPI.java" afterPath="$PROJECT_DIR$/src/main/java/Controller/ServiceAPI.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LineSDK/Events.java" afterPath="$PROJECT_DIR$/src/main/java/LineSDK/Events.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" afterPath="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -31,8 +24,8 @@
       <file leaf-file-name="LineBotController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="160" column="44" lean-forward="true" selection-start-line="160" selection-start-column="44" selection-end-line="160" selection-end-column="44" />
+            <state relative-caret-position="614">
+              <caret line="155" column="13" lean-forward="true" selection-start-line="155" selection-start-column="13" selection-end-line="155" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -494,9 +487,9 @@
         <option value="$PROJECT_DIR$/src/main/java/Interface/interQuran.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/Quran.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/ServiceAPI.java" />
-        <option value="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" />
         <option value="$PROJECT_DIR$/src/main/java/LineSDK/Postback.java" />
         <option value="$PROJECT_DIR$/src/main/java/LineSDK/Events.java" />
+        <option value="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" />
       </list>
     </option>
   </component>
@@ -726,12 +719,12 @@
       <option name="presentableId" value="Default" />
       <updated>1517640846463</updated>
       <workItem from="1517640849478" duration="5025000" />
-      <workItem from="1517647202456" duration="1039000" />
+      <workItem from="1517647202456" duration="1188000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6064000" />
+    <option name="totallyTimeSpent" value="6213000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="69" y="-4" width="1297" height="772" extended-state="6" />
@@ -964,8 +957,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="160" column="44" lean-forward="true" selection-start-line="160" selection-start-column="44" selection-end-line="160" selection-end-column="44" />
+        <state relative-caret-position="614">
+          <caret line="155" column="13" lean-forward="true" selection-start-line="155" selection-start-column="13" selection-end-line="155" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

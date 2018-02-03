@@ -82,12 +82,9 @@ public class LineBotController
                 idTarget = payload.events[0].source.userId;
             }
 
-            if (!payload.events[0].message.type.equals("text")){
-                replyToUser(payload.events[0].replyToken, "Unknown message");
-            } else {
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
-//                String jadwalSholat=msgText.substring(0,13);
+
 
                 if (!msgText.contains("bot leave")){
                     try {
@@ -154,7 +151,7 @@ public class LineBotController
                     });
 
 
-                }
+
 
             }
         }else if(eventType.equals("postback")){
