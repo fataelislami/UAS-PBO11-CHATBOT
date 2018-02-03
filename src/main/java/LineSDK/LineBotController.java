@@ -108,7 +108,6 @@ public class LineBotController
                 }
 
             }
-        }
          
         return new ResponseEntity<String>(HttpStatus.OK);
     }
