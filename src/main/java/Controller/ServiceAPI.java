@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.mCariMasjid;
 import Model.mJadwalSholat;
 import Model.mKalender;
 import Model.mQuran;
@@ -18,4 +19,7 @@ public interface ServiceAPI {
 
     @GET("api/kalender/api.php?")
     Call<mKalender> getKalender(@QueryMap HashMap<String,String> params);
+
+    @GET("api/masjid/api.php")
+    Call<mCariMasjid> getDataMasjid(@QueryMap HashMap<String,String> params);
 }
