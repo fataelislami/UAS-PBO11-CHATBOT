@@ -97,6 +97,9 @@ public class LineBotController
                 if(msgText.contains("test")){
                     replyToUser(payload.events[0].replyToken, "TERHUBUNG OKE");
                 }
+                                if(msgText.contains("Daniel")){
+                    replyToUser(payload.events[0].replyToken, "10116477 - Fransiskus Xaverius Daniel S");
+                }
                 if(msgText.equals("coba ini")){
                     String[] word=msgText.split("\\s");
 
