@@ -119,8 +119,7 @@ public class LineBotController
                                             new PostbackAction("Ashar "+value[3],"#"),
                                             new PostbackAction("Maghrib "+value[4],"#")
                                     ));
-//
-//                            replyToUser(payload.events[0].replyToken,"Halo");
+
                             replyTemplateToUser(
                                     payload.events[0].replyToken,
                                     "Jadwal Sholat Hari Ini"
