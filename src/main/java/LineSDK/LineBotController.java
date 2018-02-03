@@ -103,6 +103,10 @@ public class LineBotController
                 if(msgText.contains("nama")) {
                     replyToUser(payload.events[0].replyToken, "ilham prasetyo");
                 }
+
+                if(msgText.contains("daniel")) {
+                    replyToUser(payload.events[0].replyToken, "Fransiskus Xaverius Daniel S");
+                }
                 if(msgText.equals("coba ini")){
                     String[] word=msgText.split("\\s");
 
