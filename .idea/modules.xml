@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LINEBotHeroku-master.iml" filepath="$PROJECT_DIR$/LINEBotHeroku-master.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LINEBotHeroku-master_main.iml" filepath="$PROJECT_DIR$/.idea/modules/LINEBotHeroku-master_main.iml" group="LINEBotHeroku-master" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/LINEBotHeroku-master_test.iml" filepath="$PROJECT_DIR$/.idea/modules/LINEBotHeroku-master_test.iml" group="LINEBotHeroku-master" />
+      <module fileurl="file://$PROJECT_DIR$/UAS-PBO11-CHATBOT.iml" filepath="$PROJECT_DIR$/UAS-PBO11-CHATBOT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/UAS-PBO11-CHATBOT_main.iml" filepath="$PROJECT_DIR$/.idea/modules/UAS-PBO11-CHATBOT_main.iml" group="UAS-PBO11-CHATBOT" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/UAS-PBO11-CHATBOT_test.iml" filepath="$PROJECT_DIR$/.idea/modules/UAS-PBO11-CHATBOT_test.iml" group="UAS-PBO11-CHATBOT" />
     </modules>
   </component>
 </project>

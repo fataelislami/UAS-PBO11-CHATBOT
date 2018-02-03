@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="LINEBotHeroku-master_main" target="1.8" />
-      <module name="LINEBotHeroku-master_test" target="1.8" />
+      <module name="UAS-PBO11-CHATBOT_main" target="1.8" />
+      <module name="UAS-PBO11-CHATBOT_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
