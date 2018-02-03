@@ -53,19 +53,19 @@ public class CariMasjid {
                                 new PostbackAction("Tuju Masjid",
                                         "#")
                         )),
-                        new CarouselColumn(imageUrl, "TEST", "Masjid Ini Deket Banget Bro", Arrays.asList(
+                        new CarouselColumn(imageUrl, value.get(1).getNama(), "Masjid Ini Deket Banget Bro", Arrays.asList(
                                 new PostbackAction("Tuju Masjid",
                                         "#")
                         )),
-                        new CarouselColumn(imageUrl, "TEST", "Masjid Ini Deket Banget Bro", Arrays.asList(
+                        new CarouselColumn(imageUrl, value.get(2).getNama(), "Masjid Ini Deket Banget Bro", Arrays.asList(
                                 new PostbackAction("Tuju Masjid",
                                         "#")
                         )),
-                        new CarouselColumn(imageUrl, "TEST", "Masjid Ini Deket Banget Bro", Arrays.asList(
+                        new CarouselColumn(imageUrl, value.get(3).getNama(), "Masjid Ini Deket Banget Bro", Arrays.asList(
                                 new PostbackAction("Tuju Masjid",
                                         "#")
                         )),
-                        new CarouselColumn(imageUrl, "TEST", "Masjid Ini Deket Banget Bro", Arrays.asList(
+                        new CarouselColumn(imageUrl, value.get(4).getNama(), "Masjid Ini Deket Banget Bro", Arrays.asList(
                                 new PostbackAction("Tuju Masjid",
                                         "#")
                         ))
