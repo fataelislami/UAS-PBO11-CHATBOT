@@ -99,7 +99,7 @@ public class LineBotController
                 if(msgText.contains("test")){
                     replyToUser(payload.events[0].replyToken, "TERHUBUNG OKE");
                 }
-                                if(msgText.contains("Daniel")){
+                                if(msgText.contains("daniel")){
                     replyToUser(payload.events[0].replyToken, "10116477 - Fransiskus Xaverius Daniel S");
                 }
                 if(msgText.equals("coba ini")){
