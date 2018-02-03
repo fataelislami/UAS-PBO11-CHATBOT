@@ -86,7 +86,7 @@ public class LineBotController
                 msgText = msgText.toLowerCase();
 
 
-                if (!msgText.contains("bot leave")){
+                if (msgText.contains("bot leave")){
                     if (payload.events[0].source.type.equals("group")){
                         leaveGR(payload.events[0].source.groupId, "group");
                     } else if (payload.events[0].source.type.equals("room")){
