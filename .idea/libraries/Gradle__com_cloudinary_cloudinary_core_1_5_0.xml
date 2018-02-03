@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: com.cloudinary:cloudinary-core:1.5.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cloudinary/cloudinary-core/1.5.0/ec7990a20adf1af37fc414f7a001e6d2a714d9ed/cloudinary-core-1.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.cloudinary/cloudinary-core/1.5.0/805e7bc079e624e3eab5213e74ff029aa28b1a7c/cloudinary-core-1.5.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
