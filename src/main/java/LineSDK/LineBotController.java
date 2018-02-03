@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 @RestController
-@RequestMapping(value="/linebot")
+@RequestMapping(value="/linesdk")
 public class LineBotController
 {
     @Autowired
