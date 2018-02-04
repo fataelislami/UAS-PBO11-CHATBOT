@@ -60,8 +60,8 @@ public class LineBotController
     /**
      *
      */
-    @Autowired
-    public Dao mDao;
+//    @Autowired
+//    Dao mDao;
 
     @RequestMapping(value="/callback", method=RequestMethod.POST)
     public ResponseEntity<String> callback(
@@ -113,20 +113,7 @@ public class LineBotController
                         leaveGR(payload.events[0].source.roomId, "room");
                     }
                 }
-                if(msgText.contains("insert")){
-                    String exist = findUser(payload.events[0].source.userId);
-                    if(exist=="User not found")
-                    {
-                        replyToUser(payload.events[0].replyToken,"Kamu Belum Terdaftar di database");
-                    }
-//                        String reg = regLineID(payload.events[0].source.userId, "notset", sender.getDisplayName(),"00","00");
-//                        if (!reg.equals("Yah gagal mendaftar :(")){
-//                            replyToUser(payload.events[0].replyToken,"Berhasil Di Insert");
-//                        }else{
-//                            replyToUser(payload.events[0].replyToken,"Gagal Di Insert");
-//                        }
 
-                }
                 if(msgText.contains("kalender")){
 
                     Date oTanggal = new Date();
@@ -242,33 +229,7 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }
-    private String regLineID(String aUserId, String aFlag, String aDisplayName,String lat,String lng){
-        String regStatus;
-        String exist = findUser(aUserId);
-        if(exist=="User not found")
-        {
-            Config obj=new Config();
-            DaoImpl mDao=new DaoImpl(obj.getDataSource());
-            int reg=mDao.RegisterUser(aUserId,aFlag,aDisplayName,lat,lng);
-            if(reg==1) regStatus="Yay berhasil mendaftar!";
-            else regStatus="Yah gagal mendaftar :(";
-        }
-        else regStatus="Anda sudah terdaftar";
-        return regStatus;
-    }
-    private String findUser(String aUserId){
-        String txt="";
-        List<User> self=mDao.getByUserId("%"+aUserId+"%");
-        if(self.size() > 0)
-        {
-            for (int i=0; i<self.size(); i++){
-                User user = self.get(i);
-                txt = user.user_id;
-            }
-        }
-        else txt="User not found";
-        return txt;
-    }
+
     private void replyToUser(String rToken, String messageToUser){
         TextMessage textMessage = new TextMessage(messageToUser);
         ReplyMessage replyMessage = new ReplyMessage(rToken,textMessage);
