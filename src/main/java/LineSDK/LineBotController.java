@@ -232,32 +232,32 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }
-    private String regLineID(String aUserId, String aFlag, String aDisplayName){
-        String regStatus;
-        String exist = findUser(aUserId);
-        if(exist=="User not found")
-        {
-
-            int reg=mDao.RegisterUser(aUserId,aFlag,aDisplayName);
-            if(reg==1) regStatus="Yay berhasil mendaftar!";
-            else regStatus="Yah gagal mendaftar :(";
-        }
-        else regStatus="Anda sudah terdaftar";
-        return regStatus;
-    }
-    private String findUser(String aUserId){
-        String txt="";
-        List<User> self=mDao.getByUserId("%"+aUserId+"%");
-        if(self.size() > 0)
-        {
-            for (int i=0; i<self.size(); i++){
-                User user = self.get(i);
-                txt = user.user_id;
-            }
-        }
-        else txt="User not found";
-        return txt;
-    }
+//    private String regLineID(String aUserId, String aFlag, String aDisplayName){
+//        String regStatus;
+//        String exist = findUser(aUserId);
+//        if(exist=="User not found")
+//        {
+//
+//            int reg=mDao.RegisterUser(aUserId,aFlag,aDisplayName);
+//            if(reg==1) regStatus="Yay berhasil mendaftar!";
+//            else regStatus="Yah gagal mendaftar :(";
+//        }
+//        else regStatus="Anda sudah terdaftar";
+//        return regStatus;
+//    }
+//    private String findUser(String aUserId){
+//        String txt="";
+//        List<User> self=mDao.getByUserId("%"+aUserId+"%");
+//        if(self.size() > 0)
+//        {
+//            for (int i=0; i<self.size(); i++){
+//                User user = self.get(i);
+//                txt = user.user_id;
+//            }
+//        }
+//        else txt="User not found";
+//        return txt;
+//    }
     private void replyToUser(String rToken, String messageToUser){
         TextMessage textMessage = new TextMessage(messageToUser);
         ReplyMessage replyMessage = new ReplyMessage(rToken,textMessage);
