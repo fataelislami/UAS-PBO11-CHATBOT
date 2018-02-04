@@ -11,6 +11,7 @@ import Interface.interKalender;
 import Interface.interQuran;
 import LineSDK.Payload;
 import Model.Result;
+import Model.User;
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.client.LineSignatureValidator;
@@ -23,7 +24,9 @@ import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.message.template.ButtonsTemplate;
 import com.linecorp.bot.model.message.template.ConfirmTemplate;
 import com.linecorp.bot.model.message.template.Template;
+import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
+import database.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -45,10 +48,14 @@ public class LineBotController
     @Autowired
     @Qualifier("com.linecorp.channel_secret")
     String lChannelSecret;
+    private UserProfileResponse sender;
 
     @Autowired
     @Qualifier("com.linecorp.channel_access_token")
     String lChannelAccessToken;
+
+    @Autowired
+    Dao mDao;
 
     @RequestMapping(value="/callback", method=RequestMethod.POST)
     public ResponseEntity<String> callback(
@@ -99,6 +106,16 @@ public class LineBotController
                     } else if (payload.events[0].source.type.equals("room")){
                         leaveGR(payload.events[0].source.roomId, "room");
                     }
+                }
+                if(msgText.contains("insert")){
+
+                        String reg = regLineID(payload.events[0].source.userId, "notset", sender.getDisplayName());
+                        if (!reg.equals("Yah gagal mendaftar :(")){
+                            replyToUser(payload.events[0].replyToken,"Berhasil Di Insert");
+                        }else{
+                            replyToUser(payload.events[0].replyToken,"Gagal Di Insert");
+                        }
+
                 }
                 if(msgText.contains("kalender")){
 
@@ -215,7 +232,32 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }
+    private String regLineID(String aUserId, String aFlag, String aDisplayName){
+        String regStatus;
+        String exist = findUser(aUserId);
+        if(exist=="User not found")
+        {
 
+            int reg=mDao.RegisterUser(aUserId,aFlag,aDisplayName);
+            if(reg==1) regStatus="Yay berhasil mendaftar!";
+            else regStatus="Yah gagal mendaftar :(";
+        }
+        else regStatus="Anda sudah terdaftar";
+        return regStatus;
+    }
+    private String findUser(String aUserId){
+        String txt="";
+        List<User> self=mDao.getByUserId("%"+aUserId+"%");
+        if(self.size() > 0)
+        {
+            for (int i=0; i<self.size(); i++){
+                User user = self.get(i);
+                txt = user.user_id;
+            }
+        }
+        else txt="User not found";
+        return txt;
+    }
     private void replyToUser(String rToken, String messageToUser){
         TextMessage textMessage = new TextMessage(messageToUser);
         ReplyMessage replyMessage = new ReplyMessage(rToken,textMessage);
