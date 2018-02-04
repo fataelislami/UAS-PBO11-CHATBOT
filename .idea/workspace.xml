@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="7818a694-e3f0-45a1-96f2-237c5ed0fdc9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" afterPath="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/Dao.java" afterPath="$PROJECT_DIR$/src/main/java/database/Dao.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/DaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/database/DaoImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -41,8 +43,8 @@
       <file leaf-file-name="LineBotController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="113" column="30" lean-forward="true" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
+            <state relative-caret-position="224">
+              <caret line="242" column="34" lean-forward="false" selection-start-line="242" selection-start-column="34" selection-end-line="242" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -53,8 +55,8 @@
       <file leaf-file-name="Dao.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/Dao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+            <state relative-caret-position="144">
+              <caret line="8" column="97" lean-forward="false" selection-start-line="8" selection-start-column="97" selection-end-line="8" selection-end-column="97" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -65,16 +67,16 @@
       <file leaf-file-name="DaoImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/database/DaoImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="39" column="41" lean-forward="false" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="41" />
+            <state relative-caret-position="347">
+              <caret line="53" column="92" lean-forward="false" selection-start-line="53" selection-start-column="92" selection-end-line="53" selection-end-column="92" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1108#1114#0" expanded="true" />
-                <element signature="e#1476#1477#0" expanded="true" />
-                <element signature="e#1550#1551#0" expanded="true" />
-                <marker date="1517731844356" expanded="true" signature="482:529" ph="SELECT user_... tbl_user" />
-                <marker date="1517731844356" expanded="true" signature="612:647" ph="SELECT user_... tbl_user" />
-                <marker date="1517731844356" expanded="true" signature="697:771" ph="INSERT INTO tbl_user... " />
+                <element signature="e#1568#1569#0" expanded="true" />
+                <element signature="e#1642#1643#0" expanded="true" />
+                <marker date="1517735089615" expanded="true" signature="482:529" ph="SELECT user_... tbl_user" />
+                <marker date="1517735089615" expanded="true" signature="612:647" ph="SELECT user_... tbl_user" />
+                <marker date="1517735089615" expanded="true" signature="697:771" ph="INSERT INTO tbl_user... " />
               </folding>
             </state>
           </provider>
@@ -164,6 +166,7 @@
       <find>Yah gagal mendaftar :(</find>
       <find>displa</find>
       <find>payload</find>
+      <find>reG</find>
       <find>regLineID</find>
     </findStrings>
   </component>
@@ -518,10 +521,10 @@
         <option value="$PROJECT_DIR$/src/main/java/Interface/interCariMasjid.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controller/CariMasjid.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/User.java" />
-        <option value="$PROJECT_DIR$/src/main/java/database/Dao.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/MULTIPLE_RS_EXTRACTOR.java" />
-        <option value="$PROJECT_DIR$/src/main/java/database/DaoImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/database/Config.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/DaoImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/database/Dao.java" />
         <option value="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" />
       </list>
     </option>
@@ -782,12 +785,12 @@
       <workItem from="1517640849478" duration="5025000" />
       <workItem from="1517647202456" duration="2679000" />
       <workItem from="1517652598759" duration="600000" />
-      <workItem from="1517653499956" duration="17251000" />
+      <workItem from="1517653499956" duration="17605000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26186000" />
+    <option name="totallyTimeSpent" value="26540000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="69" y="-4" width="1297" height="772" extended-state="6" />
@@ -1257,14 +1260,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/MULTIPLE_RS_EXTRACTOR.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
@@ -1289,10 +1284,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/Dao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="8" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
+        <state relative-caret-position="144">
+          <caret line="8" column="97" lean-forward="false" selection-start-line="8" selection-start-column="97" selection-end-line="8" selection-end-column="97" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1301,24 +1304,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/database/DaoImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="39" column="41" lean-forward="false" selection-start-line="39" selection-start-column="30" selection-end-line="39" selection-end-column="41" />
+        <state relative-caret-position="347">
+          <caret line="53" column="92" lean-forward="false" selection-start-line="53" selection-start-column="92" selection-end-line="53" selection-end-column="92" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1108#1114#0" expanded="true" />
-            <element signature="e#1476#1477#0" expanded="true" />
-            <element signature="e#1550#1551#0" expanded="true" />
-            <marker date="1517731844356" expanded="true" signature="482:529" ph="SELECT user_... tbl_user" />
-            <marker date="1517731844356" expanded="true" signature="612:647" ph="SELECT user_... tbl_user" />
-            <marker date="1517731844356" expanded="true" signature="697:771" ph="INSERT INTO tbl_user... " />
+            <element signature="e#1568#1569#0" expanded="true" />
+            <element signature="e#1642#1643#0" expanded="true" />
+            <marker date="1517735089615" expanded="true" signature="482:529" ph="SELECT user_... tbl_user" />
+            <marker date="1517735089615" expanded="true" signature="612:647" ph="SELECT user_... tbl_user" />
+            <marker date="1517735089615" expanded="true" signature="697:771" ph="INSERT INTO tbl_user... " />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="113" column="30" lean-forward="true" selection-start-line="113" selection-start-column="30" selection-end-line="113" selection-end-column="30" />
+        <state relative-caret-position="224">
+          <caret line="242" column="34" lean-forward="false" selection-start-line="242" selection-start-column="34" selection-end-line="242" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

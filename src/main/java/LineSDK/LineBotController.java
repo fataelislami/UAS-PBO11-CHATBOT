@@ -108,7 +108,7 @@ public class LineBotController
                 }
                 if(msgText.contains("insert")){
 
-                        String reg = regLineID(payload.events[0].source.userId, "notset", sender.getDisplayName());
+                        String reg = regLineID(payload.events[0].source.userId, "notset", sender.getDisplayName(),"00","00");
                         if (!reg.equals("Yah gagal mendaftar :(")){
                             replyToUser(payload.events[0].replyToken,"Berhasil Di Insert");
                         }else{
@@ -231,14 +231,14 @@ public class LineBotController
             pushMessage(targetID, message);
         }
     }
-    private String regLineID(String aUserId, String aFlag, String aDisplayName){
+    private String regLineID(String aUserId, String aFlag, String aDisplayName,String lat,String lng){
         String regStatus;
         String exist = findUser(aUserId);
         if(exist=="User not found")
         {
             Config obj=new Config();
             DaoImpl mDao=new DaoImpl(obj.getDataSource());
-            int reg=mDao.RegisterUser(aUserId,aFlag,aDisplayName);
+            int reg=mDao.RegisterUser(aUserId,aFlag,aDisplayName,lat,lng);
             if(reg==1) regStatus="Yay berhasil mendaftar!";
             else regStatus="Yah gagal mendaftar :(";
         }

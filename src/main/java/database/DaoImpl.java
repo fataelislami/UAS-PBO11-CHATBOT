@@ -32,6 +32,8 @@ public class DaoImpl implements Dao {
                         aRs.getString("user_id"),
                         aRs.getString("flag"),
                         aRs.getString("display_name"));
+                        aRs.getString("lat");
+                        aRs.getString("lng");
                 list.add(p);
             }
             return list;
@@ -48,7 +50,7 @@ public class DaoImpl implements Dao {
     }
 
     @Override
-    public int RegisterUser(String aUserId, String aFlag, String aDisplayName) {
-        return mJdbc.update(SQL_REGISTER, new Object[]{aUserId, aFlag,  aDisplayName});
+    public int RegisterUser(String aUserId, String aFlag, String aDisplayName,String lat,String lng) {
+        return mJdbc.update(SQL_REGISTER, new Object[]{aUserId, aFlag,  aDisplayName,lat,lng});
     }
 }
