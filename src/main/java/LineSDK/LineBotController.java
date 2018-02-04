@@ -107,16 +107,16 @@ public class LineBotController
                         leaveGR(payload.events[0].source.roomId, "room");
                     }
                 }
-                if(msgText.contains("insert")){
-
-                        String reg = regLineID(payload.events[0].source.userId, "notset", sender.getDisplayName());
-                        if (!reg.equals("Yah gagal mendaftar :(")){
-                            replyToUser(payload.events[0].replyToken,"Berhasil Di Insert");
-                        }else{
-                            replyToUser(payload.events[0].replyToken,"Gagal Di Insert");
-                        }
-
-                }
+//                if(msgText.contains("insert")){
+//
+//                        String reg = regLineID(payload.events[0].source.userId, "notset", sender.getDisplayName());
+//                        if (!reg.equals("Yah gagal mendaftar :(")){
+//                            replyToUser(payload.events[0].replyToken,"Berhasil Di Insert");
+//                        }else{
+//                            replyToUser(payload.events[0].replyToken,"Gagal Di Insert");
+//                        }
+//
+//                }
                 if(msgText.contains("kalender")){
 
                     Date oTanggal = new Date();
