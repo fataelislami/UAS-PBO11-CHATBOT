@@ -135,7 +135,7 @@ public class LineBotController
                     }
                 }
                 if(msgText.contains("/id")){
-                    replyToUser(payload.events[0].replyToken,"ID KAMU : "+sender.getUserId());
+                    replyToUser(payload.events[0].replyToken,"ID KAMU : "+payload.events[0].source.userId);
                 }
                 if(msgText.contains("kalender")){
 
