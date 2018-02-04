@@ -110,6 +110,7 @@ public class LineBotController
 
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
+                sender=getUserProfile(payload.events[0].source.userId);
 
 
                 if (msgText.contains("bot leave")){
@@ -135,7 +136,7 @@ public class LineBotController
                     }
                 }
                 if(msgText.contains("/id")){
-                    replyToUser(payload.events[0].replyToken,"ID KAMU : "+payload.events[0].source.userId);
+                    replyToUser(payload.events[0].replyToken,"ID KAMU : "+sender.getUserId());
                 }
                 if(msgText.contains("kalender")){
 
@@ -251,6 +252,21 @@ public class LineBotController
         if (message!=null){
             pushMessage(targetID, message);
         }
+    }
+    private UserProfileResponse getUserProfile(String userId) {
+        Response<UserProfileResponse> response = null;
+        try {
+            response = LineMessagingServiceBuilder
+                    .create(lChannelAccessToken)
+                    .build()
+                    .getProfile(userId)
+                    .execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (response.isSuccessful()) return response.body();
+        else System.out.println(response.code() + " " + response.message());
+        return null;
     }
 
     private void replyToUser(String rToken, String messageToUser){
