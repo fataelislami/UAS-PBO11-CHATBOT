@@ -27,6 +27,7 @@ import com.linecorp.bot.model.message.template.Template;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
 //import database.Dao;
+import database.Dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -54,8 +55,8 @@ public class LineBotController
     @Qualifier("com.linecorp.channel_access_token")
     String lChannelAccessToken;
 
-//    @Autowired
-//    Dao mDao;
+    @Autowired
+    Dao mDao;
 
     @RequestMapping(value="/callback", method=RequestMethod.POST)
     public ResponseEntity<String> callback(
