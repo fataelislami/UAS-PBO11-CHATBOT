@@ -107,13 +107,17 @@ public class LineBotController
                     }
                 }
                 if(msgText.contains("insert")){
-
-                        String reg = regLineID(payload.events[0].source.userId, "notset", sender.getDisplayName(),"00","00");
-                        if (!reg.equals("Yah gagal mendaftar :(")){
-                            replyToUser(payload.events[0].replyToken,"Berhasil Di Insert");
-                        }else{
-                            replyToUser(payload.events[0].replyToken,"Gagal Di Insert");
-                        }
+                    String exist = findUser(payload.events[0].source.userId);
+                    if(exist=="User not found")
+                    {
+                        replyToUser(payload.events[0].replyToken,"Kamu Belum Terdaftar di database");
+                    }
+//                        String reg = regLineID(payload.events[0].source.userId, "notset", sender.getDisplayName(),"00","00");
+//                        if (!reg.equals("Yah gagal mendaftar :(")){
+//                            replyToUser(payload.events[0].replyToken,"Berhasil Di Insert");
+//                        }else{
+//                            replyToUser(payload.events[0].replyToken,"Gagal Di Insert");
+//                        }
 
                 }
                 if(msgText.contains("kalender")){

@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7818a694-e3f0-45a1-96f2-237c5ed0fdc9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" afterPath="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/Dao.java" afterPath="$PROJECT_DIR$/src/main/java/database/Dao.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/DaoImpl.java" afterPath="$PROJECT_DIR$/src/main/java/database/DaoImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -43,8 +41,8 @@
       <file leaf-file-name="LineBotController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="242" column="34" lean-forward="false" selection-start-line="242" selection-start-column="34" selection-end-line="242" selection-end-column="34" />
+            <state relative-caret-position="152">
+              <caret line="112" column="98" lean-forward="false" selection-start-line="112" selection-start-column="98" selection-end-line="112" selection-end-column="98" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -163,11 +161,11 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>replyToUser</find>
-      <find>Yah gagal mendaftar :(</find>
       <find>displa</find>
       <find>payload</find>
       <find>reG</find>
       <find>regLineID</find>
+      <find>Yah gagal mendaftar :(</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -785,12 +783,12 @@
       <workItem from="1517640849478" duration="5025000" />
       <workItem from="1517647202456" duration="2679000" />
       <workItem from="1517652598759" duration="600000" />
-      <workItem from="1517653499956" duration="17605000" />
+      <workItem from="1517653499956" duration="17908000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26540000" />
+    <option name="totallyTimeSpent" value="26843000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="69" y="-4" width="1297" height="772" extended-state="6" />
@@ -1320,8 +1318,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="242" column="34" lean-forward="false" selection-start-line="242" selection-start-column="34" selection-end-line="242" selection-end-column="34" />
+        <state relative-caret-position="152">
+          <caret line="112" column="98" lean-forward="false" selection-start-line="112" selection-start-column="98" selection-end-line="112" selection-end-column="98" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
