@@ -75,10 +75,16 @@ public class LineBotController
 
         if (eventType.equals("join")){
             if (payload.events[0].source.type.equals("group")){
-                replyToUser(payload.events[0].replyToken, "Hello Group");
+                replyToUser(payload.events[0].replyToken, "Hello terima kasih telah mengundang ke grup ^_^");
+            }
+            if (payload.events[0].source.type.equals("group")){
+                replyToUser(payload.events[0].replyToken, "Silahkan pilih fitur di bawah ini");
             }
             if (payload.events[0].source.type.equals("room")){
-                replyToUser(payload.events[0].replyToken, "Hello Room");
+                replyToUser(payload.events[0].replyToken, "Hello terima kasih telah menambahkan sebagai teman ^_^");
+            }
+            if (payload.events[0].source.type.equals("room")){
+                replyToUser(payload.events[0].replyToken, "Silahkan pilih fitur di bawah ini");
             }
         } else if (eventType.equals("message")){
             if (payload.events[0].source.type.equals("group")){
