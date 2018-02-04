@@ -134,6 +134,9 @@ public class LineBotController
                         replyToUser(payload.events[0].replyToken,"Gagal, Kamu Sudah Terdaftar!");
                     }
                 }
+                if(msgText.contains("/id")){
+                    replyToUser(payload.events[0].replyToken,"ID KAMU : "+sender.getUserId());
+                }
                 if(msgText.contains("kalender")){
 
                     Date oTanggal = new Date();
