@@ -7,6 +7,27 @@ public class User
     public String flag;
     public String display_name;
     public String lat;
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public void setFlag(String flag) {
+        this.flag = flag;
+    }
+
+    public void setDisplay_name(String display_name) {
+        this.display_name = display_name;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
     public String lng;
 
     public String getUser_id() {

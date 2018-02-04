@@ -124,6 +124,16 @@ public class LineBotController
                     List<String> obj1=obj.getByUserId("abc123");
                     replyToUser(payload.events[0].replyToken,"Ditemukan userId : "+obj1.get(0));
                 }
+                if(msgText.contains("register")){
+                    DaoImpl obj=new DaoImpl();
+                    User oUser=new User(sender.getUserId(),"default",sender.getDisplayName(),"0","0");
+                    int id=obj.RegisterUser(oUser);
+                    if(id==1){
+                        replyToUser(payload.events[0].replyToken,"Data Kamu Berhasil Masuk Database");
+                    }else{
+                        replyToUser(payload.events[0].replyToken,"Gagal, Kamu Sudah Terdaftar!");
+                    }
+                }
                 if(msgText.contains("kalender")){
 
                     Date oTanggal = new Date();

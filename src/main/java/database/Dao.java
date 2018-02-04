@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface Dao {
     public List<String> getByUserId(String aUserId);
-    public int RegisterUser(String aUserId,String aFlag,String aDisplayName,String lat,String lng);
+    public int RegisterUser(User user);
 }
