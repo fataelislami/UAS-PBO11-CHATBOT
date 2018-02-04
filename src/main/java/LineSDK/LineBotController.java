@@ -27,6 +27,7 @@ import com.linecorp.bot.model.message.template.Template;
 import com.linecorp.bot.model.profile.UserProfileResponse;
 import com.linecorp.bot.model.response.BotApiResponse;
 import database.Config;
+import database.Dao;
 import database.DaoImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -55,6 +56,9 @@ public class LineBotController
     @Autowired
     @Qualifier("com.linecorp.channel_access_token")
     String lChannelAccessToken;
+
+    @Autowired
+    Dao mDao;
 
     @RequestMapping(value="/callback", method=RequestMethod.POST)
     public ResponseEntity<String> callback(
@@ -251,8 +255,6 @@ public class LineBotController
     }
     private String findUser(String aUserId){
         String txt="";
-        Config obj=new Config();
-        DaoImpl mDao=new DaoImpl(obj.getDataSource());
         List<User> self=mDao.getByUserId("%"+aUserId+"%");
         if(self.size() > 0)
         {
