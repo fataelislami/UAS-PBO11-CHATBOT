@@ -119,7 +119,11 @@ public class LineBotController
                         leaveGR(payload.events[0].source.roomId, "room");
                     }
                 }
-
+                if(msgText.contains("check")){
+                    DaoImpl obj=new DaoImpl();
+                    List<String> obj1=obj.getByUserId("abc123");
+                    replyToUser(payload.events[0].replyToken,"Ditemukan userId : "+obj1.get(0));
+                }
                 if(msgText.contains("kalender")){
 
                     Date oTanggal = new Date();
