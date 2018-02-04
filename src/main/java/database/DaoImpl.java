@@ -19,7 +19,27 @@ public class DaoImpl implements Dao {
 
     private JdbcTemplate mJdbc;
 
-    private final static ResultSetExtractor<List<User>> MULTIPLE_RS_EXTRACTOR=new ResultSetExtractor< List<User> >()
+    private final static ResultSetExtractor<User> SINGLE_RS_EXTRACTOR=new ResultSetExtractor<User>()
+    {
+        @Override
+        public User extractData(ResultSet aRs)
+                throws SQLException, DataAccessException
+        {
+            while(aRs.next())
+            {
+                User p=new User(
+                        aRs.getString("user_id"),
+                        aRs.getString("flag"),
+                        aRs.getString("display_name"));
+                        aRs.getString("lat");
+                        aRs.getString("lng");
+
+                return p;
+            }
+            return null;
+        }
+    };
+    private final static ResultSetExtractor<List<User>> MULTIPLE_RS_EXTRACTOR=new ResultSetExtractor<List<User>>()
     {
         @Override
         public List<User> extractData(ResultSet aRs)

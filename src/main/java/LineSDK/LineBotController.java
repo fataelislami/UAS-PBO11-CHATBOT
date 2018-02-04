@@ -57,8 +57,11 @@ public class LineBotController
     @Qualifier("com.linecorp.channel_access_token")
     String lChannelAccessToken;
 
+    /**
+     *
+     */
     @Autowired
-    Dao mDao;
+    public Dao mDao;
 
     @RequestMapping(value="/callback", method=RequestMethod.POST)
     public ResponseEntity<String> callback(
