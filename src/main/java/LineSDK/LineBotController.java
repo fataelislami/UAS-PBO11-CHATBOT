@@ -130,7 +130,58 @@ public class LineBotController
 
 
             }
-        }  else {
+        }
+        else if(flag.equals("cari kiblat")){
+            if (eventType.equals("message")) {
+                //Menangkap pesan berupa text yang dikirimkan oleh user
+                if(messageType.contains("text")){
+                    msgText = payload.events[0].message.text;
+                    msgText = msgText.toLowerCase();
+                    if (msgText.contains("/reset")) {
+                        DaoImpl obj = new DaoImpl();
+                        int update= obj.UpdateFlag(sender.getUserId(),"default");
+                        if (update!=0){
+                            replyToUser(payload.events[0].replyToken, "BOT Telah direset");
+                        }
+                    }
+                    if (msgText.contains("/check")) {
+                        replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari kiblat"+messageType);
+                    }
+
+                }
+                //Menangkap Lokasi yang dikirimkan oleh User
+                if(messageType.contains("location")){
+                    lat=payload.events[0].message.latitude;
+                    lng=payload.events[0].message.longitude;
+                    title=payload.events[0].message.title;
+                    address=payload.events[0].message.address;
+                    DaoImpl obj = new DaoImpl();
+                    int update= obj.UpdateFlag(sender.getUserId(),"default");
+                    if (update!=0){
+                        ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
+                                "https://islamify.id/imagebot/carikiblat.png",
+                                "Sekarang Menuju Waktu",
+                                "Kiblat dari Lokasi Anda",
+                                Arrays.asList(
+                                        new URIAction("Satelit","http://qib.la/embed/?lat="+lat+"&lng="+lng+"&zoom=18&type=satellite"),
+                                        new URIAction("Maps","http://qib.la/embed/?lat="+lat+"&lng="+lng+"&zoom=18&type=terrain")
+                                ));
+
+                        replyTemplateToUser(
+                                payload.events[0].replyToken,
+                                "Cek kiblat"
+                                , buttonsTemplate
+                        );
+                    }
+
+                }
+
+
+
+            }
+
+        }
+        else {
             eventType = payload.events[0].type;
             if (eventType.equals("message")) {
             msgText = payload.events[0].message.text;
@@ -231,6 +282,15 @@ public class LineBotController
                     }
                 });
             }
+            //CARI KIBLAT BY ILHAM
+                if (msgText.contains("/carikiblat")) {
+                    DaoImpl obj = new DaoImpl();
+                    CariKiblat oCari=new CariKiblat();
+                    int update= obj.UpdateFlag(sender.getUserId(),"cari kiblat");
+                    if (update!=0){
+                        oCari.replyImageMap(payload.events[0].replyToken,lChannelAccessToken);
+                    }
+                }
             //Keyword jadwal sholat dari API Islamify dan mengambil data dari model
             if (msgText.substring(0, 13).contains("jadwal sholat")) {
 
