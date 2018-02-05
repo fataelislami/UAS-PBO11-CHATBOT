@@ -46,28 +46,28 @@ public class Kajian {
     public void replyToUser(String rToken,String lChannelAccessToken, List<Content> value){
         CarouselTemplate carouselTemplate = new CarouselTemplate(
                 Arrays.asList(
-                        new CarouselColumn(value.get(0).getImageUrl(), value.get(0).getUsername(), "Di Play aja kak!", Arrays.asList(
+                        new CarouselColumn(value.get(0).getImage_url(), value.get(0).getUsername(), "Di Play aja kak!", Arrays.asList(
                                 new PostbackAction("Tonton Kajian",
                                         "video#0")
                         )),
-                        new CarouselColumn(value.get(1).getImageUrl(), value.get(1).getUsername(), "Di Play aja kak!", Arrays.asList(
+                        new CarouselColumn(value.get(1).getImage_url(), value.get(1).getUsername(), "Di Play aja kak!", Arrays.asList(
                                 new PostbackAction("Tonton Kajian",
                                         "video#1")
                         )),
-                        new CarouselColumn(value.get(2).getImageUrl(), value.get(2).getUsername(), "Di Play aja kak!", Arrays.asList(
+                        new CarouselColumn(value.get(2).getImage_url(), value.get(2).getUsername(), "Di Play aja kak!", Arrays.asList(
                                 new PostbackAction("Tonton Kajian",
                                         "video#2")
                         )),
-                        new CarouselColumn(value.get(3).getImageUrl(), value.get(3).getUsername(), "Di Play aja kak!", Arrays.asList(
+                        new CarouselColumn(value.get(3).getImage_url(), value.get(3).getUsername(), "Di Play aja kak!", Arrays.asList(
                                 new PostbackAction("Tonton Kajian",
                                         "video#3")
                         )),
-                        new CarouselColumn(value.get(4).getImageUrl(), value.get(4).getUsername(), "Di Play aja kak!", Arrays.asList(
+                        new CarouselColumn(value.get(4).getImage_url(), value.get(4).getUsername(), "Di Play aja kak!", Arrays.asList(
                                 new PostbackAction("Tonton Kajian",
                                         "video#4")
                         ))
                         ));
-        TemplateMessage templateMessage = new TemplateMessage("Kajian nih"+value.get(4).getImageUrl(), carouselTemplate);
+        TemplateMessage templateMessage = new TemplateMessage("Kajian nih", carouselTemplate);
         TextMessage textMessage =new TextMessage("Halo kak, ini video kajiannya..");
         List<com.linecorp.bot.model.message.Message> message=new ArrayList<>();
         message.add(textMessage);
@@ -88,7 +88,7 @@ public class Kajian {
     }
 
     public void replyVideo(String rToken,String lChannelAccessToken, List<Content> value,int index){
-        VideoMessage oVideo=new VideoMessage(value.get(index).getVideoUrl(),value.get(index).getImageUrl());
+        VideoMessage oVideo=new VideoMessage(value.get(index).getVideo_url(),value.get(index).getImage_url());
         ReplyMessage replyMessage = new ReplyMessage(rToken,oVideo);
 
         try {
