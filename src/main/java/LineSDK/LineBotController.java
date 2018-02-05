@@ -78,7 +78,8 @@ public class LineBotController
         Gson gson = new Gson();
         Payload payload = gson.fromJson(aPayload, Payload.class);
 
-        String msgText = " ";
+        String msgText = payload.events[0].message.text.toLowerCase();
+//        msgText = msgText.toLowerCase();
         String postBack = " ";
         String eventType = payload.events[0].type;
         String messageType=payload.events[0].message.type;
@@ -99,8 +100,7 @@ public class LineBotController
         List<String> oList = oDao.getByUserId(payload.events[0].source.userId);
         String flag = oList.get(1);
         if (flag.equals("cari masjid")) {
-            msgText = payload.events[0].message.text;
-            msgText = msgText.toLowerCase();
+
             if (eventType.equals("message")) {
 
 //                replyToUser(payload.events[0].replyToken, "Message ID : "+messageId);
