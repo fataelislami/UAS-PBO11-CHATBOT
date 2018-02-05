@@ -1,7 +1,7 @@
 Islamify Chatbot JAVA
 ===================
 Islamify Muslim E-Assistant
-![logo](http://kostlab.id/IFsY.png)
+![logo](http://kostlab.id/ify.png)
 
 ----
 
@@ -20,7 +20,7 @@ Persiapan:
   - HEROKU CLI
   - AKUN LINE@ DEVELOPER
 
-Ganti Akses Token
+Ganti Akses Token di application properties
 ```
 com.linecorp.channel_secret=<AKSES TOKEN ISI DISINI>
 com.linecorp.channel_access_token=<AKSES TOKEN ISI DISINI>
