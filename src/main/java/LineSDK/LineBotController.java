@@ -259,7 +259,7 @@ public class LineBotController
             }
 
         }
-        if (eventType.equals("postback")) {
+        else if (eventType.equals("postback")) {
             postBack = payload.events[0].postback.data;
             if (postBack.substring(0, 5).contains("next_")) {
                 String[] dataayat = postBack.split("_");
