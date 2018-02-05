@@ -1,9 +1,6 @@
 package Controller;
 
-import Model.mCariMasjid;
-import Model.mJadwalSholat;
-import Model.mKalender;
-import Model.mQuran;
+import Model.*;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
@@ -22,4 +19,7 @@ public interface ServiceAPI {
 
     @GET("api/masjid/api.php")
     Call<mCariMasjid> getDataMasjid(@QueryMap HashMap<String,String> params);
+
+    @GET("botbeta/webhook/index.php/VideoAPI")
+    Call<mKajian> getKajian();
 }

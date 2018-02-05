@@ -1,15 +1,10 @@
 
 package LineSDK;
 
-import Controller.CariMasjid;
-import Controller.JadwalSholat;
-import Controller.Kalender;
-import Controller.Quran;
-import Interface.interCariMasjid;
-import Interface.interJdwlSholat;
-import Interface.interKalender;
-import Interface.interQuran;
+import Controller.*;
+import Interface.*;
 import LineSDK.Payload;
+import Model.Content;
 import Model.Result;
 import Model.User;
 import com.google.gson.Gson;
@@ -21,6 +16,7 @@ import com.linecorp.bot.model.action.PostbackAction;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TemplateMessage;
 import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.message.VideoMessage;
 import com.linecorp.bot.model.message.template.ButtonsTemplate;
 import com.linecorp.bot.model.message.template.ConfirmTemplate;
 import com.linecorp.bot.model.message.template.Template;
@@ -162,6 +158,15 @@ public class LineBotController
                      oCari.replyImageMap(payload.events[0].replyToken,lChannelAccessToken);
                   }
             }
+            if (msgText.contains("kajian")){
+                Kajian oKajian=new Kajian();
+                oKajian.getKajian(new interKajian() {
+                    @Override
+                    public void onSuccess(List<Content> value) {
+                        oKajian.replyToUser(payload.events[0].replyToken,lChannelAccessToken,value);
+                    }
+                });
+            }
             if (msgText.contains("register")) {
                 DaoImpl obj = new DaoImpl();
                 User oUser = new User(sender.getUserId(), "default", sender.getDisplayName(), "0", "0");
@@ -272,6 +277,18 @@ public class LineBotController
             if (postBack.equals("#1")) {
                 replyToUser(payload.events[0].replyToken, "Button Clicked #1");
             }
+            if (postBack.substring(0,5).contains("video")){
+                String[] datavideo=postBack.split("#");
+                int index=Integer.parseInt(datavideo[1]);
+                Kajian oKajian=new Kajian();
+                oKajian.getKajian(new interKajian() {
+                    @Override
+                    public void onSuccess(List<Content> value) {
+                        oKajian.replyVideo(payload.events[0].replyToken,lChannelAccessToken,value,index);
+                    }
+                });
+            }
+
 
         }
     }
