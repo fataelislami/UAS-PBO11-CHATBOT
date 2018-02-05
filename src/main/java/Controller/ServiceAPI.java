@@ -20,6 +20,6 @@ public interface ServiceAPI {
     @GET("api/masjid/api.php")
     Call<mCariMasjid> getDataMasjid(@QueryMap HashMap<String,String> params);
 
-    @GET("botbeta/webhook/index.php/VideoAPI")
+    @GET("botbeta/webhook/index.php/ApiVideo")
     Call<mKajian> getKajian();
 }
