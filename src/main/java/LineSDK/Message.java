@@ -4,6 +4,7 @@ public class Message {
     public String type;
     public String id;
     public String text;
+    public String location;
     public String title;
     public String address;
     public String latitude;
