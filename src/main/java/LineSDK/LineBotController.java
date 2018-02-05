@@ -75,7 +75,6 @@ public class LineBotController
         Payload payload = gson.fromJson(aPayload, Payload.class);
 
         String msgText = " ";
-        String postBack = " ";
         String lat=" ";
         String lng=" ";
         String address=" ";
@@ -258,6 +257,7 @@ public class LineBotController
 
         }
         else if (eventType.equals("postback")) {
+            String postBack;
             postBack = payload.events[0].postback.data;
             if (postBack.substring(0, 5).contains("next_")) {
                 String[] dataayat = postBack.split("_");
