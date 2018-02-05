@@ -98,7 +98,19 @@ public class LineBotController
         String flag = oList.get(1);
         if (flag.equals("cari masjid")) {
             if (eventType.equals("message")) {
-                replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid");
+                msgText = payload.events[0].message.text;
+                msgText = msgText.toLowerCase();
+                if (msgText.contains("/reset")) {
+                    DaoImpl obj = new DaoImpl();
+                    int update= obj.UpdateFlag(sender.getUserId(),"default");
+                    if (update!=0){
+                        replyToUser(payload.events[0].replyToken, "BOT Telah direset");
+                    }
+                }
+                if (msgText.contains("/check")) {
+                    replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid");
+                }
+
             }
         } else {
         if (eventType.equals("message")) {
@@ -128,6 +140,9 @@ public class LineBotController
                 } else {
                     replyToUser(payload.events[0].replyToken, "Gagal, Kamu Sudah Terdaftar!");
                 }
+            }
+            if (msgText.contains("/check")) {
+                replyToUser(payload.events[0].replyToken, "Kamu dalam sesi default");
             }
             if (msgText.contains("/id")) {
                 replyToUser(payload.events[0].replyToken, "ID KAMU : " + sender.getUserId());
