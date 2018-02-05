@@ -7,4 +7,5 @@ public class Events {
     public Long timestamp;
     public Message message;
     public Postback postback;
+
 }

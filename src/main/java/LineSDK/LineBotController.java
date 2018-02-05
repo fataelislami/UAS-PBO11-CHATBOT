@@ -248,9 +248,30 @@ public class LineBotController
 
             }
 
-        }else if(eventType.contains("postback")){
-            replyToUser(payload.events[0].replyToken,"terklik");
         }
+            if (eventType.equals("postback")) {
+
+                String postBack = payload.events[0].postback.data;
+                replyToUser(payload.events[0].replyToken,"OKE");
+            if (postBack.substring(0, 5).contains("next_")) {
+                String[] dataayat = postBack.split("_");
+                int next = Integer.parseInt(dataayat[2]) + 1;
+                String datanext = Integer.toString(next);
+                Quran obj = new Quran();
+                obj.getQuran(dataayat[1], datanext, new interQuran() {
+                    @Override
+                    public void onSuccess(String[] value) {
+                        String data = dataayat[1] + "_" + datanext;
+                        obj.replyToUser(payload.events[0].replyToken, lChannelAccessToken, value, data);
+                    }
+                });
+            }
+            if (postBack.equals("#1")) {
+                replyToUser(payload.events[0].replyToken, "Button Clicked #1");
+            }
+
+
+            }
 
     }
 
