@@ -90,16 +90,13 @@ public class LineBotController
             if (payload.events[0].source.type.equals("group")){
                 replyToUser(payload.events[0].replyToken, "Hello terima kasih telah mengundang ke grup ^_^");
             }
-            if (payload.events[0].source.type.equals("group")){
-                replyToUser(payload.events[0].replyToken, "Silahkan pilih fitur di bawah ini");
-            }
             if (payload.events[0].source.type.equals("room")){
                 replyToUser(payload.events[0].replyToken, "Hello terima kasih telah menambahkan sebagai teman ^_^");
             }
-            if (payload.events[0].source.type.equals("room")){
-                replyToUser(payload.events[0].replyToken, "Silahkan pilih fitur di bawah ini");
-            }
-        } else if (eventType.equals("message")){
+        }
+
+
+        if (eventType.equals("message")){
             if (payload.events[0].source.type.equals("group")){
                 idTarget = payload.events[0].source.groupId;
             } else if (payload.events[0].source.type.equals("room")){
@@ -210,8 +207,7 @@ public class LineBotController
                                             new PostbackAction("Ashar "+value[3],"#"),
                                             new PostbackAction("Maghrib "+value[4],"#")
                                     ));
-//
-//                            replyToUser(payload.events[0].replyToken,"Halo");
+
                             replyTemplateToUser(
                                     payload.events[0].replyToken,
                                     "Jadwal Sholat Hari Ini"
@@ -224,7 +220,8 @@ public class LineBotController
 
 
             }
-        }else if(eventType.equals("postback")){
+        }
+        if(eventType.equals("postback")){
             postBack=payload.events[0].postback.data;
             if(postBack.substring(0,5).contains("next_")){
                 String[] dataayat=postBack.split("_");

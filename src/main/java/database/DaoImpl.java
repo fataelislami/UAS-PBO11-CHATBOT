@@ -17,6 +17,7 @@ public class DaoImpl implements Dao {
     private final static String SQL_SELECT_ALL="SELECT * FROM tbl_user";
     private final static String SQL_GET_BY_USER_ID=SQL_SELECT_ALL + " WHERE LOWER(user_id)=(?);";
     private final static String SQL_REGISTER="INSERT INTO "+USER_TABLE+" (user_id, flag , display_name,lat,lng) VALUES (?,?,?,?,?);";
+    private final static String UPDATE="UPDATE tbl_user set flag=? WHERE user_id=?;";
 
     @Override
     public List<String> getByUserId(String aUserId) {
@@ -64,6 +65,26 @@ public class DaoImpl implements Dao {
         }
         return id;
     }
+
+    @Override
+    public int UpdateFlag(String UserId, String flag) {
+
+        int affectedrows = 0;
+        Config oConfig=new Config();
+        try (Connection conn = oConfig.connect();
+             PreparedStatement pstmt = conn.prepareStatement(UPDATE)) {
+
+            pstmt.setString(1, flag);
+            pstmt.setString(2, UserId);
+
+            affectedrows = pstmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return affectedrows;
+    }
+
 
 
 }

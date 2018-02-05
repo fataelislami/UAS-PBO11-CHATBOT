@@ -7,4 +7,5 @@ import java.util.List;
 public interface Dao {
     public List<String> getByUserId(String aUserId);
     public int RegisterUser(User user);
+    public int UpdateFlag(String UserId,String flag);
 }
