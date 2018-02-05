@@ -66,168 +66,158 @@ public class LineBotController
     @RequestMapping(value="/callback", method=RequestMethod.POST)
     public ResponseEntity<String> callback(
             @RequestHeader("X-Line-Signature") String aXLineSignature,
-            @RequestBody String aPayload)
-    {
-        final String text=String.format("The Signature is: %s",
-                (aXLineSignature!=null && aXLineSignature.length() > 0) ? aXLineSignature : "N/A");
+            @RequestBody String aPayload) {
+        final String text = String.format("The Signature is: %s",
+                (aXLineSignature != null && aXLineSignature.length() > 0) ? aXLineSignature : "N/A");
         System.out.println(text);
-        final boolean valid=new LineSignatureValidator(lChannelSecret.getBytes()).validateSignature(aPayload.getBytes(), aXLineSignature);
+        final boolean valid = new LineSignatureValidator(lChannelSecret.getBytes()).validateSignature(aPayload.getBytes(), aXLineSignature);
         System.out.println("The signature is: " + (valid ? "valid" : "tidak valid"));
-        if(aPayload!=null && aPayload.length() > 0)
-        {
+        if (aPayload != null && aPayload.length() > 0) {
             System.out.println("Payload: " + aPayload);
         }
         Gson gson = new Gson();
         Payload payload = gson.fromJson(aPayload, Payload.class);
 
         String msgText = " ";
-        String postBack=" ";
-        String idTarget = " ";
-//        String jdwlSholat =" ";
+        String postBack = " ";
         String eventType = payload.events[0].type;
+        msgText = payload.events[0].message.text;
+        msgText = msgText.toLowerCase();
+        String idUser = payload.events[0].source.userId;
+        sender = getUserProfile(payload.events[0].source.userId);
+        //DATABASE CHECK
+        DaoImpl oDao = new DaoImpl();
+        List<String> oList = oDao.getByUserId(idUser);
+        String flag = oList.get(1);
 
-        if (eventType.equals("join")){
-            if (payload.events[0].source.type.equals("group")){
+        //DATABASE CHECK FINAL
+        if (eventType.equals("join")) {
+            if (payload.events[0].source.type.equals("group")) {
                 replyToUser(payload.events[0].replyToken, "Hello terima kasih telah mengundang ke grup ^_^");
             }
-            if (payload.events[0].source.type.equals("room")){
+            if (payload.events[0].source.type.equals("room")) {
                 replyToUser(payload.events[0].replyToken, "Hello terima kasih telah menambahkan sebagai teman ^_^");
             }
         }
 
-
-        if (eventType.equals("message")){
-            if (payload.events[0].source.type.equals("group")){
-                idTarget = payload.events[0].source.groupId;
-            } else if (payload.events[0].source.type.equals("room")){
-                idTarget = payload.events[0].source.roomId;
-            } else if (payload.events[0].source.type.equals("user")){
-                idTarget = payload.events[0].source.userId;
+        if (flag.equals("cari masjid")) {
+            if (eventType.equals("message")) {
+                replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid");
             }
+        } else {
+        if (eventType.equals("message")) {
 
-                msgText = payload.events[0].message.text;
-                msgText = msgText.toLowerCase();
-                String idUser=payload.events[0].source.userId;
-                sender=getUserProfile(payload.events[0].source.userId);
+            if (msgText.contains("bot leave")) {
+                if (payload.events[0].source.type.equals("group")) {
+                    leaveGR(payload.events[0].source.groupId, "group");
+                } else if (payload.events[0].source.type.equals("room")) {
+                    leaveGR(payload.events[0].source.roomId, "room");
+                }
+            }
+            if (msgText.contains("check")) {
+                DaoImpl obj = new DaoImpl();
+                List<String> obj1 = obj.getByUserId("abc123");
+                replyToUser(payload.events[0].replyToken, "Ditemukan userId : " + obj1.get(0));
+            }
+            if (msgText.contains("register")) {
+                DaoImpl obj = new DaoImpl();
+                User oUser = new User(sender.getUserId(), "default", sender.getDisplayName(), "0", "0");
+                int id = obj.RegisterUser(oUser);
+                if (id == 1) {
+                    replyToUser(payload.events[0].replyToken, "Data Kamu Berhasil Masuk Database");
+                } else {
+                    replyToUser(payload.events[0].replyToken, "Gagal, Kamu Sudah Terdaftar!");
+                }
+            }
+            if (msgText.contains("/id")) {
+                replyToUser(payload.events[0].replyToken, "ID KAMU : " + sender.getUserId());
+            }
+            if (msgText.contains("kalender")) {
 
-            DaoImpl oDao=new DaoImpl();
-            List<String> oList=oDao.getByUserId(idUser);
-            String flag=oList.get(1);
-            if(flag.equals("cari masjid")){
-                replyToUser(payload.events[0].replyToken,"Kamu dalam sesi cari masjid");
-            }else{
-                if (msgText.contains("bot leave")){
-                    if (payload.events[0].source.type.equals("group")){
-                        leaveGR(payload.events[0].source.groupId, "group");
-                    } else if (payload.events[0].source.type.equals("room")){
-                        leaveGR(payload.events[0].source.roomId, "room");
+                Date oTanggal = new Date();
+                String Tanggal = new SimpleDateFormat("dd-mm-yyyy").format(oTanggal);
+                Kalender oKal = new Kalender();
+                oKal.getKalender(Tanggal, new interKalender() {
+                    @Override
+                    public void onSuccess(String[] value) {
+                        replyToUser(payload.events[0].replyToken, "Ini Tanggalnya " + value[1]);
                     }
-                }
-                if(msgText.contains("check")){
-                    DaoImpl obj=new DaoImpl();
-                    List<String> obj1=obj.getByUserId("abc123");
-                    replyToUser(payload.events[0].replyToken,"Ditemukan userId : "+obj1.get(0));
-                }
-                if(msgText.contains("register")){
-                    DaoImpl obj=new DaoImpl();
-                    User oUser=new User(sender.getUserId(),"default",sender.getDisplayName(),"0","0");
-                    int id=obj.RegisterUser(oUser);
-                    if(id==1){
-                        replyToUser(payload.events[0].replyToken,"Data Kamu Berhasil Masuk Database");
-                    }else{
-                        replyToUser(payload.events[0].replyToken,"Gagal, Kamu Sudah Terdaftar!");
+                });
+            }
+            if (msgText.contains("cari masjid")) {
+                CariMasjid obj = new CariMasjid();
+                obj.getDataMasjid(new interCariMasjid() {
+                    @Override
+                    public void onSuccess(List<Result> value) {
+                        obj.replyToUser(payload.events[0].replyToken, lChannelAccessToken, value);
                     }
-                }
-                if(msgText.contains("/id")){
-                    replyToUser(payload.events[0].replyToken,"ID KAMU : "+sender.getUserId());
-                }
-                if(msgText.contains("kalender")){
+                });
+            }
+            if (msgText.contains("kelompok")) {
+                replyToUser(payload.events[0].replyToken, "BOT KELOMPOK 3");
+            }
+            if (msgText.contains("test")) {
+                replyToUser(payload.events[0].replyToken, "TERHUBUNG OKE");
+            }
+            if (msgText.contains("nama")) {
+                replyToUser(payload.events[0].replyToken, "ilham prasetyo");
+            }
+            if (msgText.contains("daniel")) {
+                replyToUser(payload.events[0].replyToken, "Fransiskus Xaverius Daniel S");
+            }
+            if (msgText.contains("nim ilham")) {
+                replyToUser(payload.events[0].replyToken, "10116496");
+            }
+            if (msgText.equals("coba ini")) {
+                String[] word = msgText.split("\\s");
 
-                    Date oTanggal = new Date();
-                    String Tanggal = new SimpleDateFormat("dd-mm-yyyy").format(oTanggal);
-                    Kalender oKal = new Kalender();
-                    oKal.getKalender(Tanggal, new interKalender() {
-                        @Override
-                        public void onSuccess(String[] value) {
-                            replyToUser(payload.events[0].replyToken,"Ini Tanggalnya " + value[1]);
-                        }
-                    });
-                }
-                if(msgText.contains("cari masjid")){
-                    CariMasjid obj=new CariMasjid();
-                    obj.getDataMasjid(new interCariMasjid() {
-                        @Override
-                        public void onSuccess(List<Result> value) {
-                            obj.replyToUser(payload.events[0].replyToken,lChannelAccessToken,value);
-                        }
-                    });
-                }
-                if(msgText.contains("kelompok")){
-                    replyToUser(payload.events[0].replyToken,"BOT KELOMPOK 3");
-                }
-                if(msgText.contains("test")){
-                    replyToUser(payload.events[0].replyToken, "TERHUBUNG OKE");
-                }
-                if(msgText.contains("nama")) {
-                    replyToUser(payload.events[0].replyToken, "ilham prasetyo");
-                }
-                if(msgText.contains("daniel")) {
-                    replyToUser(payload.events[0].replyToken, "Fransiskus Xaverius Daniel S");
-                }
-                if(msgText.contains("nim ilham")) {
-                    replyToUser(payload.events[0].replyToken, "10116496");
-                }
-                if(msgText.equals("coba ini")){
-                    String[] word=msgText.split("\\s");
-
-                    replyToUser(payload.events[0].replyToken, "GET KATA : "+word[1]);
-                }
-                if(msgText.substring(0,2).contains("qs")){
-                    String[] data=msgText.split("\\s");
-                    String[] dataquran=data[1].split(":");
-                    Quran obj=new Quran();
-                    obj.getQuran(dataquran[0], dataquran[1], new interQuran() {
-                        @Override
-                        public void onSuccess(String[] value) {
-                            String data=dataquran[0]+"_"+dataquran[1];
-                            obj.replyToUser(payload.events[0].replyToken,lChannelAccessToken,value,data);
-                        }
-                    });
-                }
-                if(msgText.substring(0,13).contains("jadwal sholat")){
+                replyToUser(payload.events[0].replyToken, "GET KATA : " + word[1]);
+            }
+            if (msgText.substring(0, 2).contains("qs")) {
+                String[] data = msgText.split("\\s");
+                String[] dataquran = data[1].split(":");
+                Quran obj = new Quran();
+                obj.getQuran(dataquran[0], dataquran[1], new interQuran() {
+                    @Override
+                    public void onSuccess(String[] value) {
+                        String data = dataquran[0] + "_" + dataquran[1];
+                        obj.replyToUser(payload.events[0].replyToken, lChannelAccessToken, value, data);
+                    }
+                });
+            }
+            if (msgText.substring(0, 13).contains("jadwal sholat")) {
 
 
-                    String[] kota=msgText.split("\\s");
-                    JadwalSholat obj=new JadwalSholat();
-                    obj.getJadwal(kota[2], new interJdwlSholat() {
-                        @Override
-                        public void onSuccess(String[] value) {
+                String[] kota = msgText.split("\\s");
+                JadwalSholat obj = new JadwalSholat();
+                obj.getJadwal(kota[2], new interJdwlSholat() {
+                    @Override
+                    public void onSuccess(String[] value) {
 
-                            ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
-                                    "https://islamify.id/imagebot/FIXJADWALL.png",
-                                    "Sekarang Menuju Waktu",
-                                    "Isya "+value[5],
-                                    Arrays.asList(
-                                            new PostbackAction("Shubuh "+value[1],"#"),
-                                            new PostbackAction("Dzuhur "+value[2],"#1"),
-                                            new PostbackAction("Ashar "+value[3],"#"),
-                                            new PostbackAction("Maghrib "+value[4],"#")
-                                    ));
+                        ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
+                                "https://islamify.id/imagebot/FIXJADWALL.png",
+                                "Sekarang Menuju Waktu",
+                                "Isya " + value[5],
+                                Arrays.asList(
+                                        new PostbackAction("Shubuh " + value[1], "#"),
+                                        new PostbackAction("Dzuhur " + value[2], "#1"),
+                                        new PostbackAction("Ashar " + value[3], "#"),
+                                        new PostbackAction("Maghrib " + value[4], "#")
+                                ));
 
-                            replyTemplateToUser(
-                                    payload.events[0].replyToken,
-                                    "Jadwal Sholat Hari Ini"
-                                    ,buttonsTemplate
-                            );
-                        }
-                    });
-
-
+                        replyTemplateToUser(
+                                payload.events[0].replyToken,
+                                "Jadwal Sholat Hari Ini"
+                                , buttonsTemplate
+                        );
+                    }
+                });
 
 
             }
+
         }
-        }
+    }
         if(eventType.equals("postback")){
             postBack=payload.events[0].postback.data;
             if(postBack.substring(0,5).contains("next_")){
