@@ -81,6 +81,7 @@ public class LineBotController
         String msgText = " ";
         String postBack = " ";
         String eventType = payload.events[0].type;
+        String messageType=payload.events[0].message.type;
 
         sender = getUserProfile(payload.events[0].source.userId);
 
@@ -110,7 +111,7 @@ public class LineBotController
                 if (msgText.contains("/check")) {
                     replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid");
                 }
-                if (payload.events[0].message.type.equals("location")){
+                if (messageType.equals("location")){
                    replyToUser(payload.events[0].replyToken,"Lokasi Terdeteksi");
                 }
 
