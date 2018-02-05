@@ -128,7 +128,8 @@ public class LineBotController
 
             }
         } else {
-        if (eventType.equals("message")) {
+            eventType = payload.events[0].type;
+            if (eventType.equals("message")) {
             msgText = payload.events[0].message.text;
             msgText = msgText.toLowerCase();
             String idUser = payload.events[0].source.userId;
