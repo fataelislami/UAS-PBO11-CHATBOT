@@ -80,7 +80,6 @@ public class LineBotController
         String address=" ";
         String title=" ";
         String messageType=payload.events[0].message.type;
-        String messageId=payload.events[0].message.id;
         sender = getUserProfile(payload.events[0].source.userId);
         String eventType = payload.events[0].type;
         if (eventType.equals("join")) {
@@ -90,6 +89,29 @@ public class LineBotController
             if (payload.events[0].source.type.equals("room")) {
                 replyToUser(payload.events[0].replyToken, "Hello Room");
             }
+        }
+        if (eventType.equals("postback")) {
+
+            String postBack = payload.events[0].postback.data;
+            replyToUser(payload.events[0].replyToken,postBack);
+//            if (postBack.substring(0, 5).contains("next_")) {
+//                String[] dataayat = postBack.split("_");
+//                int next = Integer.parseInt(dataayat[2]) + 1;
+//                String datanext = Integer.toString(next);
+//                Quran obj = new Quran();
+//                obj.getQuran(dataayat[1], datanext, new interQuran() {
+//                    @Override
+//                    public void onSuccess(String[] value) {
+//                        String data = dataayat[1] + "_" + datanext;
+//                        obj.replyToUser(payload.events[0].replyToken, lChannelAccessToken, value, data);
+//                    }
+//                });
+//            }
+//            if (postBack.equals("#1")) {
+//                replyToUser(payload.events[0].replyToken, "Button Clicked #1");
+//            }
+
+
         }
 
         DaoImpl oDao = new DaoImpl();
@@ -258,29 +280,7 @@ public class LineBotController
         }
 
     }
-        if (eventType.equals("postback")) {
 
-            String postBack = payload.events[0].postback.data;
-            replyToUser(payload.events[0].replyToken,postBack);
-//            if (postBack.substring(0, 5).contains("next_")) {
-//                String[] dataayat = postBack.split("_");
-//                int next = Integer.parseInt(dataayat[2]) + 1;
-//                String datanext = Integer.toString(next);
-//                Quran obj = new Quran();
-//                obj.getQuran(dataayat[1], datanext, new interQuran() {
-//                    @Override
-//                    public void onSuccess(String[] value) {
-//                        String data = dataayat[1] + "_" + datanext;
-//                        obj.replyToUser(payload.events[0].replyToken, lChannelAccessToken, value, data);
-//                    }
-//                });
-//            }
-//            if (postBack.equals("#1")) {
-//                replyToUser(payload.events[0].replyToken, "Button Clicked #1");
-//            }
-
-
-        }
 
 
 
