@@ -67,7 +67,7 @@ public class Kajian {
                                         "video#4")
                         ))
                         ));
-        TemplateMessage templateMessage = new TemplateMessage("Kajian nih", carouselTemplate);
+        TemplateMessage templateMessage = new TemplateMessage("Kajian nih"+value.get(4).getImageUrl(), carouselTemplate);
         TextMessage textMessage =new TextMessage("Halo kak, ini video kajiannya..");
         List<com.linecorp.bot.model.message.Message> message=new ArrayList<>();
         message.add(textMessage);
