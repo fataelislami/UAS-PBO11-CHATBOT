@@ -91,13 +91,9 @@ public class LineBotController
         //DATABASE CHECK FINAL
 
             if (eventType.equals("join")) {
-                if (payload.events[0].source.type.equals("group")) {
-                    replyToUser(payload.events[0].replyToken, "Hello terima kasih telah mengundang ke grup ^_^");
-                }
-                if (payload.events[0].source.type.equals("room")) {
-                    replyToUser(payload.events[0].replyToken, "Hello terima kasih telah menambahkan sebagai teman ^_^");
-                }
-            }else if (eventType.equals("message")) {
+                replyToUser(payload.events[0].replyToken, "Hello terima kasih telah mengundang ke grup ^_^");
+            }
+            else if (eventType.equals("message")) {
 
             if (msgText.contains("bot leave")) {
                 if (payload.events[0].source.type.equals("group")) {
@@ -208,8 +204,7 @@ public class LineBotController
 
             }
 
-        }else
-            if(eventType.equals("postback")){
+        }else if(eventType.equals("postback")){
                 postBack=payload.events[0].postback.data;
                 if(postBack.substring(0,5).contains("next_")){
                     String[] dataayat=postBack.split("_");
