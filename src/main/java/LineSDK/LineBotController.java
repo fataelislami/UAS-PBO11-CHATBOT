@@ -156,9 +156,10 @@ public class LineBotController
             }
             if (msgText.contains("/carimasjid")) {
                 DaoImpl obj = new DaoImpl();
+                CariMasjid oCari=new CariMasjid();
                   int update= obj.UpdateFlag(sender.getUserId(),"cari masjid");
                   if (update!=0){
-                      replyToUser(payload.events[0].replyToken, "Kirimkan Lokasi Saat Ini");
+                     oCari.replyImageMap(payload.events[0].replyToken,lChannelAccessToken);
                   }
             }
             if (msgText.contains("register")) {

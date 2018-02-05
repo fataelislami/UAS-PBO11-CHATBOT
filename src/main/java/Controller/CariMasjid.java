@@ -9,8 +9,13 @@ import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.action.MessageAction;
 import com.linecorp.bot.model.action.PostbackAction;
 import com.linecorp.bot.model.action.URIAction;
+import com.linecorp.bot.model.message.ImagemapMessage;
 import com.linecorp.bot.model.message.TemplateMessage;
 import com.linecorp.bot.model.message.TextMessage;
+import com.linecorp.bot.model.message.imagemap.ImagemapArea;
+import com.linecorp.bot.model.message.imagemap.ImagemapBaseSize;
+import com.linecorp.bot.model.message.imagemap.MessageImagemapAction;
+import com.linecorp.bot.model.message.imagemap.URIImagemapAction;
 import com.linecorp.bot.model.message.template.CarouselColumn;
 import com.linecorp.bot.model.message.template.CarouselTemplate;
 import com.linecorp.bot.model.response.BotApiResponse;
@@ -75,6 +80,39 @@ public class CariMasjid {
         List<com.linecorp.bot.model.message.Message> message=new ArrayList<>();
         message.add(textMessage);
         message.add(templateMessage);
+        ReplyMessage replyMessage = new ReplyMessage(rToken,message);
+
+        try {
+            Response<BotApiResponse> response = LineMessagingServiceBuilder
+                    .create(lChannelAccessToken)
+                    .build()
+                    .replyMessage(replyMessage)
+                    .execute();
+            System.out.println("Reply Message: " + response.code() + " " + response.message());
+        } catch (IOException e) {
+            System.out.println("Exception is raised ");
+            e.printStackTrace();
+        }
+
+    }
+    public void replyImageMap(String rToken,String lChannelAccessToken){
+        String imageUrl="https://islamify.id/imagebot/okemas.png";
+        ImagemapMessage imagemapMessage=new ImagemapMessage( "https://islamify.id/iimap/carimasjid",
+                "Kuy Cari Masjidnya",
+                new ImagemapBaseSize(1040, 1040),
+                Arrays.asList(
+                        new URIImagemapAction(
+                                "line://nv/location",
+                                new ImagemapArea(
+                                        0, 0, 1040, 1040
+                                )
+                        )
+                )
+        );
+        TextMessage textMessage =new TextMessage("Halo kak, ini aku nemu masjid terdekat dari kakak");
+        List<com.linecorp.bot.model.message.Message> message=new ArrayList<>();
+        message.add(textMessage);
+        message.add(imagemapMessage);
         ReplyMessage replyMessage = new ReplyMessage(rToken,message);
 
         try {
