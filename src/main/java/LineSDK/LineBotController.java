@@ -86,9 +86,7 @@ public class LineBotController
         String idUser = payload.events[0].source.userId;
         sender = getUserProfile(payload.events[0].source.userId);
         //DATABASE CHECK
-        DaoImpl oDao = new DaoImpl();
-        List<String> oList = oDao.getByUserId(idUser);
-        String flag = oList.get(1);
+
 
         //DATABASE CHECK FINAL
         if (eventType.equals("join")) {
@@ -99,7 +97,9 @@ public class LineBotController
                 replyToUser(payload.events[0].replyToken, "Hello terima kasih telah menambahkan sebagai teman ^_^");
             }
         }
-
+        DaoImpl oDao = new DaoImpl();
+        List<String> oList = oDao.getByUserId(idUser);
+        String flag = oList.get(1);
         if (flag.equals("cari masjid")) {
             if (eventType.equals("message")) {
                 replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid");
