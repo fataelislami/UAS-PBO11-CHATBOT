@@ -99,23 +99,24 @@ public class LineBotController
         List<String> oList = oDao.getByUserId(payload.events[0].source.userId);
         String flag = oList.get(1);
         if (flag.equals("cari masjid")) {
+            msgText = payload.events[0].message.text;
+            msgText = msgText.toLowerCase();
             if (eventType.equals("message")) {
-//                msgText = payload.events[0].message.text;
-//                msgText = msgText.toLowerCase();
-                replyToUser(payload.events[0].replyToken, "Message ID : "+messageId);
-//                if (msgText.contains("/reset")) {
-//                    DaoImpl obj = new DaoImpl();
-//                    int update= obj.UpdateFlag(sender.getUserId(),"default");
-//                    if (update!=0){
-//                        replyToUser(payload.events[0].replyToken, "BOT Telah direset");
-//                    }
-//                }
-//                if (msgText.contains("/check")) {
-//                    replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid"+messageType);
-//                }
-//                if (messageType.equals("location")){
-//                   replyToUser(payload.events[0].replyToken,"Lokasi Terdeteksi");
-//                }
+
+//                replyToUser(payload.events[0].replyToken, "Message ID : "+messageId);
+                if (msgText.contains("/reset")) {
+                    DaoImpl obj = new DaoImpl();
+                    int update= obj.UpdateFlag(sender.getUserId(),"default");
+                    if (update!=0){
+                        replyToUser(payload.events[0].replyToken, "BOT Telah direset");
+                    }
+                }
+                if (msgText.contains("/check")) {
+                    replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid"+messageType);
+                }
+                if (messageType.equals("location")){
+                   replyToUser(payload.events[0].replyToken,"Lokasi Terdeteksi");
+                }
 
             }
         } else {

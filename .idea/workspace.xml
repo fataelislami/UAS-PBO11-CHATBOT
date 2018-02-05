@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7818a694-e3f0-45a1-96f2-237c5ed0fdc9" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" afterPath="$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/LineSDK/Message.java" afterPath="$PROJECT_DIR$/src/main/java/LineSDK/Message.java" />
     </list>
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -43,8 +41,8 @@
       <file leaf-file-name="LineBotController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="105" column="38" lean-forward="true" selection-start-line="105" selection-start-column="38" selection-end-line="105" selection-end-column="38" />
+            <state relative-caret-position="133">
+              <caret line="106" column="18" lean-forward="true" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -895,12 +893,12 @@
       <workItem from="1517647202456" duration="2679000" />
       <workItem from="1517652598759" duration="600000" />
       <workItem from="1517653499956" duration="47961000" />
-      <workItem from="1517798648495" duration="5315000" />
+      <workItem from="1517798648495" duration="5513000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62211000" />
+    <option name="totallyTimeSpent" value="62409000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="68" y="-11" width="1299" height="780" extended-state="6" />
@@ -1352,8 +1350,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/LineSDK/LineBotController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="105" column="38" lean-forward="true" selection-start-line="105" selection-start-column="38" selection-end-line="105" selection-end-column="38" />
+        <state relative-caret-position="133">
+          <caret line="106" column="18" lean-forward="true" selection-start-line="106" selection-start-column="18" selection-end-line="106" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
