@@ -90,14 +90,6 @@ public class LineBotController
 
         //DATABASE CHECK FINAL
 
-        DaoImpl oDao = new DaoImpl();
-        List<String> oList = oDao.getByUserId(idUser);
-        String flag = oList.get(1);
-        if (flag.equals("cari masjid")) {
-            if (eventType.equals("message")) {
-                replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid");
-            }
-        } else {
             if (eventType.equals("join")) {
                 if (payload.events[0].source.type.equals("group")) {
                     replyToUser(payload.events[0].replyToken, "Hello terima kasih telah mengundang ke grup ^_^");
@@ -237,7 +229,7 @@ public class LineBotController
                 }
 
             }
-    }
+
 
 
         return new ResponseEntity<String>(HttpStatus.OK);
