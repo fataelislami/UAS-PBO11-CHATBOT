@@ -26,3 +26,5 @@ com.linecorp.channel_secret=<AKSES TOKEN ISI DISINI>
 com.linecorp.channel_access_token=<AKSES TOKEN ISI DISINI>
 ```
 ----
+
+![logo](http://kostlab.id/Untitled%20design%20(10).png)
