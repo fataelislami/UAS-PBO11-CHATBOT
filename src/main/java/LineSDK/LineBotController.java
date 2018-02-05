@@ -102,7 +102,7 @@ public class LineBotController
             if (eventType.equals("message")) {
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
-                replyToUser(payload.events[0].replyToken, "Message type : "+messageType+"ID : "+messageId);
+                replyToUser(payload.events[0].replyToken, "Message ID : "+messageId);
 //                if (msgText.contains("/reset")) {
 //                    DaoImpl obj = new DaoImpl();
 //                    int update= obj.UpdateFlag(sender.getUserId(),"default");
