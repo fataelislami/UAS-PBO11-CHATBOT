@@ -79,8 +79,11 @@ public class LineBotController
         Payload payload = gson.fromJson(aPayload, Payload.class);
 
         String msgText = " ";
-//        msgText = msgText.toLowerCase();
         String postBack = " ";
+        String lat=" ";
+        String lng=" ";
+        String address=" ";
+        String title=" ";
         String eventType = payload.events[0].type;
         String messageType=payload.events[0].message.type;
         String messageId=payload.events[0].message.id;
@@ -103,24 +106,29 @@ public class LineBotController
 
             if (eventType.equals("message")) {
                 if(messageType.contains("text")){
-                    replyToUser(payload.events[0].replyToken, "Message ID : "+messageId+"TYPE : "+messageType);
+                    msgText = payload.events[0].message.text;
+                    msgText = msgText.toLowerCase();
+                    if (msgText.contains("/reset")) {
+                        DaoImpl obj = new DaoImpl();
+                        int update= obj.UpdateFlag(sender.getUserId(),"default");
+                        if (update!=0){
+                            replyToUser(payload.events[0].replyToken, "BOT Telah direset");
+                        }
+                    }
+                    if (msgText.contains("/check")) {
+                        replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid"+messageType);
+                    }
+
                 }
                 if(messageType.contains("location")){
-                    replyToUser(payload.events[0].replyToken, "Message ID : "+messageId+"TYPE : "+messageType);
+                    lat=payload.events[0].message.latitude;
+                    lng=payload.events[0].message.longitude;
+                    title=payload.events[0].message.title;
+                    address=payload.events[0].message.address;
+                    replyToUser(payload.events[0].replyToken, "Message Lat : "+lat+"TYPE : "+messageType);
                 }
-//                if (msgText.contains("/reset")) {
-//                    DaoImpl obj = new DaoImpl();
-//                    int update= obj.UpdateFlag(sender.getUserId(),"default");
-//                    if (update!=0){
-//                        replyToUser(payload.events[0].replyToken, "BOT Telah direset");
-//                    }
-//                }
-//                if (msgText.contains("/check")) {
-//                    replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid"+messageType);
-//                }
-//                if (messageType.equals("location")){
-//                   replyToUser(payload.events[0].replyToken,"Lokasi Terdeteksi");
-//                }
+
+
 
             }
         } else {
