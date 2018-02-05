@@ -102,8 +102,12 @@ public class LineBotController
         if (flag.equals("cari masjid")) {
 
             if (eventType.equals("message")) {
-
-                replyToUser(payload.events[0].replyToken, "Message ID : "+messageId+"TYPE : "+messageType);
+                if(messageType.contains("text")){
+                    replyToUser(payload.events[0].replyToken, "Message ID : "+messageId+"TYPE : "+messageType);
+                }
+                if(messageType.contains("location")){
+                    replyToUser(payload.events[0].replyToken, "Message ID : "+messageId+"TYPE : "+messageType);
+                }
 //                if (msgText.contains("/reset")) {
 //                    DaoImpl obj = new DaoImpl();
 //                    int update= obj.UpdateFlag(sender.getUserId(),"default");
