@@ -109,7 +109,7 @@ public class LineBotController
                     }
                 }
                 if (msgText.contains("/check")) {
-                    replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid");
+                    replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid"+messageType);
                 }
                 if (messageType.equals("location")){
                    replyToUser(payload.events[0].replyToken,"Lokasi Terdeteksi");
