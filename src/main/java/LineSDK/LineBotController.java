@@ -96,7 +96,7 @@ public class LineBotController
                 replyToUser(payload.events[0].replyToken, "Hello Room");
             }
         }
-            else if (eventType.equals("message")) {
+            if (eventType.equals("message")) {
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
                 String idUser = payload.events[0].source.userId;
@@ -209,7 +209,8 @@ public class LineBotController
 
             }
 
-        }else if(eventType.equals("postback")){
+        }
+        if(eventType.equals("postback")){
                 postBack=payload.events[0].postback.data;
                 if(postBack.substring(0,5).contains("next_")){
                     String[] dataayat=postBack.split("_");
