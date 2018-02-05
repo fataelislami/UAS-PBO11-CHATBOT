@@ -89,14 +89,7 @@ public class LineBotController
 
 
         //DATABASE CHECK FINAL
-        if (eventType.equals("join")) {
-            if (payload.events[0].source.type.equals("group")) {
-                replyToUser(payload.events[0].replyToken, "Hello terima kasih telah mengundang ke grup ^_^");
-            }
-            if (payload.events[0].source.type.equals("room")) {
-                replyToUser(payload.events[0].replyToken, "Hello terima kasih telah menambahkan sebagai teman ^_^");
-            }
-        }
+
         DaoImpl oDao = new DaoImpl();
         List<String> oList = oDao.getByUserId(idUser);
         String flag = oList.get(1);
@@ -105,6 +98,14 @@ public class LineBotController
                 replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid");
             }
         } else {
+            if (eventType.equals("join")) {
+                if (payload.events[0].source.type.equals("group")) {
+                    replyToUser(payload.events[0].replyToken, "Hello terima kasih telah mengundang ke grup ^_^");
+                }
+                if (payload.events[0].source.type.equals("room")) {
+                    replyToUser(payload.events[0].replyToken, "Hello terima kasih telah menambahkan sebagai teman ^_^");
+                }
+            }
         if (eventType.equals("message")) {
 
             if (msgText.contains("bot leave")) {
@@ -217,27 +218,28 @@ public class LineBotController
             }
 
         }
-    }
-        if(eventType.equals("postback")){
-            postBack=payload.events[0].postback.data;
-            if(postBack.substring(0,5).contains("next_")){
-                String[] dataayat=postBack.split("_");
-                int next=Integer.parseInt(dataayat[2])+1;
-                String datanext=Integer.toString(next);
-                Quran obj=new Quran();
-                obj.getQuran(dataayat[1], datanext, new interQuran() {
-                    @Override
-                    public void onSuccess(String[] value) {
-                        String data=dataayat[1]+"_"+datanext;
-                        obj.replyToUser(payload.events[0].replyToken,lChannelAccessToken,value,data);
-                    }
-                });
-            }
-            if(postBack.equals("#1")){
-                replyToUser(payload.events[0].replyToken,"Button Clicked #1");
-            }
+            if(eventType.equals("postback")){
+                postBack=payload.events[0].postback.data;
+                if(postBack.substring(0,5).contains("next_")){
+                    String[] dataayat=postBack.split("_");
+                    int next=Integer.parseInt(dataayat[2])+1;
+                    String datanext=Integer.toString(next);
+                    Quran obj=new Quran();
+                    obj.getQuran(dataayat[1], datanext, new interQuran() {
+                        @Override
+                        public void onSuccess(String[] value) {
+                            String data=dataayat[1]+"_"+datanext;
+                            obj.replyToUser(payload.events[0].replyToken,lChannelAccessToken,value,data);
+                        }
+                    });
+                }
+                if(postBack.equals("#1")){
+                    replyToUser(payload.events[0].replyToken,"Button Clicked #1");
+                }
 
-        }
+            }
+    }
+
 
         return new ResponseEntity<String>(HttpStatus.OK);
     }
