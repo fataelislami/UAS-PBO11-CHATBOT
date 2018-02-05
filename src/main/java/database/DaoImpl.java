@@ -15,7 +15,7 @@ public class DaoImpl implements Dao {
 
     private final static String USER_TABLE="tbl_user";
     private final static String SQL_SELECT_ALL="SELECT * FROM tbl_user";
-    private final static String SQL_GET_BY_USER_ID=SQL_SELECT_ALL + " WHERE LOWER(user_id)=(?);";
+    private final static String SQL_GET_BY_USER_ID=SQL_SELECT_ALL + " WHERE user_id=(?);";
     private final static String SQL_REGISTER="INSERT INTO "+USER_TABLE+" (user_id, flag , display_name,lat,lng) VALUES (?,?,?,?,?);";
     private final static String UPDATE="UPDATE tbl_user set flag=? WHERE user_id=?;";
 
@@ -32,11 +32,24 @@ public class DaoImpl implements Dao {
                 obj.add(rs.getString("user_id"));
                 obj.add(rs.getString("flag"));
                 obj.add(rs.getString("display_name"));
+                obj.add(rs.getString("lat"));
+                obj.add(rs.getString("lng"));
             }
         } catch (SQLException ex) {
+
             System.out.println(ex.getMessage());
         }
-        return obj;
+        if(obj.size()!=0){
+            return obj;
+        }else{
+            obj.add("null");
+            obj.add("null");
+            obj.add("null");
+            obj.add("null");
+            obj.add("null");
+            return obj;
+        }
+
     }
 
     @Override

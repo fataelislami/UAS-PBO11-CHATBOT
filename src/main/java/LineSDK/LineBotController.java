@@ -107,9 +107,15 @@ public class LineBotController
 
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
+                String idUser=payload.events[0].source.userId;
                 sender=getUserProfile(payload.events[0].source.userId);
 
-
+            DaoImpl oDao=new DaoImpl();
+            List<String> oList=oDao.getByUserId(idUser);
+            String flag=oList.get(1);
+            if(flag.equals("cari masjid")){
+                replyToUser(payload.events[0].replyToken,"Kamu dalam sesi cari masjid");
+            }else{
                 if (msgText.contains("bot leave")){
                     if (payload.events[0].source.type.equals("group")){
                         leaveGR(payload.events[0].source.groupId, "group");
@@ -220,6 +226,7 @@ public class LineBotController
 
 
             }
+        }
         }
         if(eventType.equals("postback")){
             postBack=payload.events[0].postback.data;
