@@ -82,6 +82,7 @@ public class LineBotController
         String postBack = " ";
         String eventType = payload.events[0].type;
         String messageType=payload.events[0].message.type;
+        String messageId=payload.events[0].message.id;
 
         sender = getUserProfile(payload.events[0].source.userId);
 
@@ -101,7 +102,7 @@ public class LineBotController
             if (eventType.equals("message")) {
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
-                replyToUser(payload.events[0].replyToken, "Message type : "+messageType);
+                replyToUser(payload.events[0].replyToken, "Message type : "+messageType+"ID : "+messageId);
 //                if (msgText.contains("/reset")) {
 //                    DaoImpl obj = new DaoImpl();
 //                    int update= obj.UpdateFlag(sender.getUserId(),"default");
