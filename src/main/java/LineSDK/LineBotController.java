@@ -78,7 +78,7 @@ public class LineBotController
         Gson gson = new Gson();
         Payload payload = gson.fromJson(aPayload, Payload.class);
 
-        String msgText = payload.events[0].message.text.toLowerCase();
+        String msgText = " ";
 //        msgText = msgText.toLowerCase();
         String postBack = " ";
         String eventType = payload.events[0].type;
