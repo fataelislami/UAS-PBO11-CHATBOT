@@ -89,11 +89,11 @@ public class LineBotController
             if (payload.events[0].source.type.equals("room")) {
                 replyToUser(payload.events[0].replyToken, "Hello Room");
             }
-        }
+        }else
         if (eventType.equals("postback")) {
 
             String postBack = payload.events[0].postback.data;
-            replyToUser(payload.events[0].replyToken,postBack);
+            replyToUser(payload.events[0].replyToken,"OKE");
 //            if (postBack.substring(0, 5).contains("next_")) {
 //                String[] dataayat = postBack.split("_");
 //                int next = Integer.parseInt(dataayat[2]) + 1;
