@@ -103,20 +103,20 @@ public class LineBotController
 
             if (eventType.equals("message")) {
 
-//                replyToUser(payload.events[0].replyToken, "Message ID : "+messageId);
-                if (msgText.contains("/reset")) {
-                    DaoImpl obj = new DaoImpl();
-                    int update= obj.UpdateFlag(sender.getUserId(),"default");
-                    if (update!=0){
-                        replyToUser(payload.events[0].replyToken, "BOT Telah direset");
-                    }
-                }
-                if (msgText.contains("/check")) {
-                    replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid"+messageType);
-                }
-                if (messageType.equals("location")){
-                   replyToUser(payload.events[0].replyToken,"Lokasi Terdeteksi");
-                }
+                replyToUser(payload.events[0].replyToken, "Message ID : "+messageId+"TYPE : "+messageType);
+//                if (msgText.contains("/reset")) {
+//                    DaoImpl obj = new DaoImpl();
+//                    int update= obj.UpdateFlag(sender.getUserId(),"default");
+//                    if (update!=0){
+//                        replyToUser(payload.events[0].replyToken, "BOT Telah direset");
+//                    }
+//                }
+//                if (msgText.contains("/check")) {
+//                    replyToUser(payload.events[0].replyToken, "Kamu dalam sesi cari masjid"+messageType);
+//                }
+//                if (messageType.equals("location")){
+//                   replyToUser(payload.events[0].replyToken,"Lokasi Terdeteksi");
+//                }
 
             }
         } else {
