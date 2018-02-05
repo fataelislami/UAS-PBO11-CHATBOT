@@ -80,12 +80,10 @@ public class LineBotController
         String lng=" ";
         String address=" ";
         String title=" ";
-        String eventType = payload.events[0].type;
         String messageType=payload.events[0].message.type;
         String messageId=payload.events[0].message.id;
-
         sender = getUserProfile(payload.events[0].source.userId);
-
+        String eventType = payload.events[0].type;
         if (eventType.equals("join")) {
             if (payload.events[0].source.type.equals("group")) {
                 replyToUser(payload.events[0].replyToken, "Hello Group");
