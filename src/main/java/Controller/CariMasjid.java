@@ -25,11 +25,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class CariMasjid {
-    public void getDataMasjid(interCariMasjid callback){
+    public void getDataMasjid(String lat,String lng,interCariMasjid callback){
         ServiceAPI client=new ClientAPI().createService(ServiceAPI.class);
         HashMap<String,String> params=new HashMap<>();
-        params.put("lat","-6.888519");
-        params.put("lng","107.618493");
+        params.put("lat",lat);
+        params.put("lng",lng);
         Call<mCariMasjid> call=client.getDataMasjid(params);
         call.enqueue(new Callback<mCariMasjid>() {
             @Override

@@ -125,7 +125,18 @@ public class LineBotController
                     lng=payload.events[0].message.longitude;
                     title=payload.events[0].message.title;
                     address=payload.events[0].message.address;
-                    replyToUser(payload.events[0].replyToken, "Message Lat : "+lat+"TYPE : "+messageType);
+                    DaoImpl obj = new DaoImpl();
+                    int update= obj.UpdateFlag(sender.getUserId(),"default");
+                    if (update!=0){
+                        CariMasjid obj1 = new CariMasjid();
+                        obj1.getDataMasjid(lat,lng,new interCariMasjid() {
+                            @Override
+                            public void onSuccess(List<Result> value) {
+                                obj1.replyToUser(payload.events[0].replyToken, lChannelAccessToken, value);
+                            }
+                        });
+                    }
+
                 }
 
 
@@ -175,15 +186,6 @@ public class LineBotController
                     @Override
                     public void onSuccess(String[] value) {
                         replyToUser(payload.events[0].replyToken, "Ini Tanggalnya " + value[1]);
-                    }
-                });
-            }
-            if (msgText.contains("cari masjid")) {
-                CariMasjid obj = new CariMasjid();
-                obj.getDataMasjid(new interCariMasjid() {
-                    @Override
-                    public void onSuccess(List<Result> value) {
-                        obj.replyToUser(payload.events[0].replyToken, lChannelAccessToken, value);
                     }
                 });
             }
