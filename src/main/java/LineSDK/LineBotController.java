@@ -81,20 +81,25 @@ public class LineBotController
         String msgText = " ";
         String postBack = " ";
         String eventType = payload.events[0].type;
-        msgText = payload.events[0].message.text;
-        msgText = msgText.toLowerCase();
-        String idUser = payload.events[0].source.userId;
+
         sender = getUserProfile(payload.events[0].source.userId);
         //DATABASE CHECK
 
 
         //DATABASE CHECK FINAL
 
-            if (eventType.equals("join")) {
-                replyToUser(payload.events[0].replyToken, "Hello terima kasih telah mengundang ke grup ^_^");
+        if (eventType.equals("join")){
+            if (payload.events[0].source.type.equals("group")){
+                replyToUser(payload.events[0].replyToken, "Hello Group");
             }
+            if (payload.events[0].source.type.equals("room")){
+                replyToUser(payload.events[0].replyToken, "Hello Room");
+            }
+        }
             else if (eventType.equals("message")) {
-
+                msgText = payload.events[0].message.text;
+                msgText = msgText.toLowerCase();
+                String idUser = payload.events[0].source.userId;
             if (msgText.contains("bot leave")) {
                 if (payload.events[0].source.type.equals("group")) {
                     leaveGR(payload.events[0].source.groupId, "group");
