@@ -284,7 +284,8 @@ public class LineBotController
                 oKajian.getKajian(new interKajian() {
                     @Override
                     public void onSuccess(List<Content> value) {
-                        oKajian.replyVideo(payload.events[0].replyToken,lChannelAccessToken,value,index);
+                        replyToUser(payload.events[0].replyToken,"oke "+index);
+//                        oKajian.replyVideo(payload.events[0].replyToken,lChannelAccessToken,value,index);
                     }
                 });
             }
