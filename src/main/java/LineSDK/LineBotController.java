@@ -83,10 +83,6 @@ public class LineBotController
         String eventType = payload.events[0].type;
 
         sender = getUserProfile(payload.events[0].source.userId);
-        //DATABASE CHECK
-
-
-        //DATABASE CHECK FINAL
 
         if (eventType.equals("join")) {
             if (payload.events[0].source.type.equals("group")) {
@@ -116,10 +112,12 @@ public class LineBotController
                     leaveGR(payload.events[0].source.roomId, "room");
                 }
             }
-            if (msgText.contains("check")) {
+            if (msgText.contains("/carimasjid")) {
                 DaoImpl obj = new DaoImpl();
-                List<String> obj1 = obj.getByUserId("abc123");
-                replyToUser(payload.events[0].replyToken, "Ditemukan userId : " + obj1.get(0));
+                  int update= obj.UpdateFlag(sender.getUserId(),"cari masjid");
+                  if (update!=0){
+                      replyToUser(payload.events[0].replyToken, "Kirimkan Lokasi Saat Ini");
+                  }
             }
             if (msgText.contains("register")) {
                 DaoImpl obj = new DaoImpl();
