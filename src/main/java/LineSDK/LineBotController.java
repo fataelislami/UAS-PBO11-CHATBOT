@@ -277,23 +277,6 @@ public class LineBotController
             if (postBack.equals("#1")) {
                 replyToUser(payload.events[0].replyToken, "Button Clicked #1");
             }
-            if (postBack.substring(0, 5).contains("video")) {
-                replyToUser(payload.events[0].replyToken, "Button Clicked #1");
-
-            }
-//            if (postBack.substring(0,5).contains("video")){
-//                String[] datavideo=postBack.split("#");
-//                int index=Integer.parseInt(datavideo[1]);
-//                replyToUser(payload.events[0].replyToken, "Button Clicked #1");
-//                Kajian oKajian=new Kajian();
-//                oKajian.getKajian(new interKajian() {
-//                    @Override
-//                    public void onSuccess(List<Content> value) {
-//                        replyToUser(payload.events[0].replyToken,"oke "+index);
-////                        oKajian.replyVideo(payload.events[0].replyToken,lChannelAccessToken,value,index);
-//                    }
-//                });
-//            }
 
 
         }
