@@ -109,7 +109,7 @@ public class CariMasjid {
                         )
                 )
         );
-        TextMessage textMessage =new TextMessage("Halo kak, ini aku nemu masjid terdekat dari kakak");
+        TextMessage textMessage =new TextMessage("Halo kak, kasi tau lokasinya dong,klik mulai untuk mengirim lokasi");
         List<com.linecorp.bot.model.message.Message> message=new ArrayList<>();
         message.add(textMessage);
         message.add(imagemapMessage);

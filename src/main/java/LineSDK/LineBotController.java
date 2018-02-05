@@ -13,6 +13,7 @@ import com.linecorp.bot.client.LineSignatureValidator;
 import com.linecorp.bot.model.PushMessage;
 import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.action.PostbackAction;
+import com.linecorp.bot.model.action.URIAction;
 import com.linecorp.bot.model.message.Message;
 import com.linecorp.bot.model.message.TemplateMessage;
 import com.linecorp.bot.model.message.TextMessage;
@@ -54,10 +55,9 @@ public class LineBotController
     String lChannelAccessToken;
 
     /**
-     *
+     * SDK LINE JAVA
+     * CODE BOT BY PBO11
      */
-//    @Autowired
-//    Dao mDao;
 
     @RequestMapping(value="/callback", method=RequestMethod.POST)
     public ResponseEntity<String> callback(
@@ -84,12 +84,14 @@ public class LineBotController
         String eventType = payload.events[0].type;
 
 
+        //Mengecek Flag ke Database
         DaoImpl oDao = new DaoImpl();
         List<String> oList = oDao.getByUserId(payload.events[0].source.userId);
         String flag = oList.get(1);
         if (flag.equals("cari masjid")) {
 
             if (eventType.equals("message")) {
+                //Menangkap pesan berupa text yang dikirimkan oleh user
                 if(messageType.contains("text")){
                     msgText = payload.events[0].message.text;
                     msgText = msgText.toLowerCase();
@@ -105,6 +107,7 @@ public class LineBotController
                     }
 
                 }
+                //Menangkap Lokasi yang dikirimkan oleh User
                 if(messageType.contains("location")){
                     lat=payload.events[0].message.latitude;
                     lng=payload.events[0].message.longitude;
@@ -127,12 +130,13 @@ public class LineBotController
 
 
             }
-        } else {
+        }  else {
             eventType = payload.events[0].type;
             if (eventType.equals("message")) {
             msgText = payload.events[0].message.text;
             msgText = msgText.toLowerCase();
             String idUser = payload.events[0].source.userId;
+            //Mengirim perintah keluar kepada bot
             if (msgText.contains("bot leave")) {
                 if (payload.events[0].source.type.equals("group")) {
                     leaveGR(payload.events[0].source.groupId, "group");
@@ -140,6 +144,7 @@ public class LineBotController
                     leaveGR(payload.events[0].source.roomId, "room");
                 }
             }
+            //Mengirim perintah cari masjid dan mengambil data reply dari class CariMasjid
             if (msgText.contains("/carimasjid")) {
                 DaoImpl obj = new DaoImpl();
                 CariMasjid oCari=new CariMasjid();
@@ -148,6 +153,8 @@ public class LineBotController
                      oCari.replyImageMap(payload.events[0].replyToken,lChannelAccessToken);
                   }
             }
+
+            //Mengirim keyword kajian, dan bot mengambil reply dari class Kajian
             if (msgText.contains("kajian")){
                 Kajian oKajian=new Kajian();
                 oKajian.getKajian(new interKajian() {
@@ -157,6 +164,7 @@ public class LineBotController
                     }
                 });
             }
+            //Insert data user kedalam database postgresql
             if (msgText.contains("register")) {
                 DaoImpl obj = new DaoImpl();
                 User oUser = new User(sender.getUserId(), "default", sender.getDisplayName(), "0", "0");
@@ -167,12 +175,15 @@ public class LineBotController
                     replyToUser(payload.events[0].replyToken, "Gagal, Kamu Sudah Terdaftar!");
                 }
             }
+            //Cek Flag database
             if (msgText.contains("/check")) {
                 replyToUser(payload.events[0].replyToken, "Kamu dalam sesi default");
             }
+            //Mengeluarkan userId dari LINE
             if (msgText.contains("/id")) {
                 replyToUser(payload.events[0].replyToken, "ID KAMU : " + sender.getUserId());
             }
+            //Memanggil Keyword Kalender
             if (msgText.contains("kalender")) {
 
                 Date oTanggal = new Date();
@@ -181,30 +192,33 @@ public class LineBotController
                 oKal.getKalender(Tanggal, new interKalender() {
                     @Override
                     public void onSuccess(String[] value) {
-                        replyToUser(payload.events[0].replyToken, "Ini Tanggalnya " + value[1]);
+                        replyToUser(payload.events[0].replyToken, "Hijriyah Hari Ini " + value[1]);
                     }
                 });
             }
+
             if (msgText.contains("kelompok")) {
                 replyToUser(payload.events[0].replyToken, "BOT KELOMPOK 3");
             }
             if (msgText.contains("test")) {
                 replyToUser(payload.events[0].replyToken, "TERHUBUNG OKE");
             }
-            if (msgText.contains("nama")) {
-                replyToUser(payload.events[0].replyToken, "ilham prasetyo");
-            }
-            if (msgText.contains("daniel")) {
-                replyToUser(payload.events[0].replyToken, "Fransiskus Xaverius Daniel S");
+
+            if (msgText.contains("nim daniel")) {
+                replyToUser(payload.events[0].replyToken, "10116477");
             }
             if (msgText.contains("nim ilham")) {
-                replyToUser(payload.events[0].replyToken, "10116496");
+                    replyToUser(payload.events[0].replyToken, "10116496");
+            }
+            if (msgText.contains("nim fata")) {
+                    replyToUser(payload.events[0].replyToken, "10116499");
             }
             if (msgText.equals("coba ini")) {
                 String[] word = msgText.split("\\s");
 
                 replyToUser(payload.events[0].replyToken, "GET KATA : " + word[1]);
             }
+            //Keyword memanggil Al-Qur'an API dari Islamify
             if (msgText.substring(0, 2).contains("qs")) {
                 String[] data = msgText.split("\\s");
                 String[] dataquran = data[1].split(":");
@@ -217,6 +231,7 @@ public class LineBotController
                     }
                 });
             }
+            //Keyword jadwal sholat dari API Islamify dan mengambil data dari model
             if (msgText.substring(0, 13).contains("jadwal sholat")) {
 
 
@@ -247,6 +262,7 @@ public class LineBotController
 
 
             }
+
 
         }
             if (eventType.equals("postback")) {
