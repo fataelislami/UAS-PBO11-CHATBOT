@@ -105,8 +105,7 @@ public class LineBotController
                 if (payload.events[0].source.type.equals("room")) {
                     replyToUser(payload.events[0].replyToken, "Hello terima kasih telah menambahkan sebagai teman ^_^");
                 }
-            }else
-        if (eventType.equals("message")) {
+            }else if (eventType.equals("message")) {
 
             if (msgText.contains("bot leave")) {
                 if (payload.events[0].source.type.equals("group")) {
