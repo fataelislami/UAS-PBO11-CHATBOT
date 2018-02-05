@@ -236,12 +236,12 @@ public class LineBotController
                         ButtonsTemplate buttonsTemplate = new ButtonsTemplate(
                                 "https://islamify.id/imagebot/FIXJADWALL.png",
                                 "Sekarang Menuju Waktu",
-                                "Isya " + value[5],
+                                "Maghrib " + value[4],
                                 Arrays.asList(
                                         new PostbackAction("Shubuh " + value[1], "#"),
                                         new PostbackAction("Dzuhur " + value[2], "#1"),
                                         new PostbackAction("Ashar " + value[3], "#"),
-                                        new PostbackAction("Maghrib " + value[4], "#")
+                                        new PostbackAction("Isya " + value[5], "#")
                                 ));
 
                         replyTemplateToUser(
@@ -256,7 +256,9 @@ public class LineBotController
             }
 
         }
-        else if (eventType.equals("postback")) {
+
+    }
+        if (eventType.equals("postback")) {
 
             String postBack = payload.events[0].postback.data;
             replyToUser(payload.events[0].replyToken,postBack);
@@ -279,7 +281,6 @@ public class LineBotController
 
 
         }
-    }
 
 
 
