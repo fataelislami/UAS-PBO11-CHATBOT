@@ -100,8 +100,8 @@ public class LineBotController
         String flag = oList.get(1);
         if (flag.equals("cari masjid")) {
             if (eventType.equals("message")) {
-                msgText = payload.events[0].message.text;
-                msgText = msgText.toLowerCase();
+//                msgText = payload.events[0].message.text;
+//                msgText = msgText.toLowerCase();
                 replyToUser(payload.events[0].replyToken, "Message ID : "+messageId);
 //                if (msgText.contains("/reset")) {
 //                    DaoImpl obj = new DaoImpl();
